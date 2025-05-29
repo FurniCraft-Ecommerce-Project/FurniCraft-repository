@@ -9,15 +9,15 @@ export type ProductType = {
 };
 
 export type CustomErrorType = {
-  status: number;
-  message: string;
-};
+    status : number ,
+    message : string
+}
 
 export type NewUser = {
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-  avatar: string;
-  role: string;
-};
+    name: string;
+    username: string;
+    email: string;
+    password: string;
+    avatar: string;
+    role: string;
+  };
