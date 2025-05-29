@@ -1,0 +1,962 @@
+[
+  {
+    "name": "ADDE",
+    "description": "kursi, hitam",
+    "price": 180000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/282/0728277_PE736167_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ADDE",
+    "description": "kursi, putih",
+    "price": 180000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/282/0728280_PE736170_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÅKERVINDEFLY",
+    "description": "bantal kursi, krem, 39/35x37x5 cm",
+    "price": 249000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/595/1159544_PE888540_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÅKERVINDEFLY",
+    "description": "bantal lumbar, krem, 32x14.5x6.5 cm",
+    "price": 149000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/595/1159546_PE888542_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÅKERVINDEFLY",
+    "description": "bantal lumbar, abu-abu, 32x14.5x6.5 cm",
+    "price": 149000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/691/1169165_PE892369_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÅKERVINDEFLY",
+    "description": "bantal kursi, abu-abu, 39/35x37x5 cm",
+    "price": 199000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/595/1159545_PE888541_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÄLVGRÄSMAL",
+    "description": "alas kursi, merah, 32.6/31.3x33x3 cm",
+    "price": 129000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/210/1121071_PE874109_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÄLVGRÄSMAL",
+    "description": "alas kursi, abu-abu, 32.6/31.3x33x3 cm",
+    "price": 99000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/210/1121064_PE874105_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÄLVGRÄSMAL",
+    "description": "alas kursi, krem, 32.6/31.3x33x3 cm",
+    "price": 129000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/210/1121060_PE874101_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÄLVSTA",
+    "description": "kursi, buatan tangan rotan/Sefast dilapisi krom",
+    "price": 1195000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/225/1122532_PE874614_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÄLVSTA",
+    "description": "kursi, buatan tangan rotan/Sefast hitam",
+    "price": 1195000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/157/1115700_PE872218_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÄLVSTA",
+    "description": "kursi, buatan tangan rotan/Sefast putih",
+    "price": 1195000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/157/1115725_PE872233_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÄNGSFRÄKEN",
+    "description": "bantalan kursi, hijau/putih, 36 cm",
+    "price": 69900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/071/1407197_PE971441_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÄNGSFRÄKEN",
+    "description": "alas kursi, hitam, 36 cm",
+    "price": 79000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/511/1251163_PE924152_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja dinding+2 kursi lipat, l.ruang, cokelat tua, 70x44 cm",
+    "price": 1689000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/497/1249759_PE923486_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja+4 kursi lipat, luar ruang, cokelat tua/Frösön/Duvholmen krem, 143x75 cm",
+    "price": 4459000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/498/1249815_PE923533_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja+2 kursi lipat, luar ruang, dapat dilipat cokelat tua/Klösan biru tua, 60x62 cm",
+    "price": 1979000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/811/1381181_PE961779_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja lipat+4 kursi, luar ruang, dapat dilipat cokelat tua/Frösön/Duvholmen krem",
+    "price": 4859000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/498/1249800_PE923520_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "Meja+4 kursi berlengan+bangku, out, cokelat tua/Frösön/Duvholmen krem, 143x75 cm",
+    "price": 6779000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/498/1249847_PE923558_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja dinding+1 kursi lipat, l.ruang, cokelat tua, 70x44 cm",
+    "price": 1094000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/497/1249742_PE923473_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja dinding+1 kursi lipat, l.ruang, cokelat tua/Frösön/Duvholmen krem, 70x44 cm",
+    "price": 1214000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/497/1249747_PE923475_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "kursi, luar ruang, dapat dilipat cokelat tua/Kuddarna abu-abu muda-krem",
+    "price": 720000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/800/1380038_PE961595_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja+2 kursi lipat, luar ruang, cokelat tua/Kuddarna abu-abu muda-krem, 60x62 cm",
+    "price": 2039000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/800/1380039_PE961599_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja lipat+4 kursi, luar ruang, dapat dilipat cokelat tua/Klösan biru tua",
+    "price": 4759000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/811/1381192_PE961773_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja+4 kursi lipat, luar ruang, cokelat tua/Klösan biru tua, 143x75 cm",
+    "price": 4359000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/811/1381175_PE961790_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "Meja+4 kursi berlengan+bangku, out, cokelat tua/Kuddarna abu-abu muda-krem, 143x75 cm",
+    "price": 6159000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/800/1380041_PE961598_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja dan 2 kursi lipat, luar ruang, cokelat tua, 60x62 cm",
+    "price": 1789000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/497/1249783_PE923503_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja+4 kursi lipat, luar ruang, cokelat tua, 143x75 cm",
+    "price": 3979000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/498/1249821_PE923539_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja+4 kursi lipat, luar ruang, cokelat tua/Kuddarna abu-abu muda-krem, 143x75 cm",
+    "price": 4479000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/800/1380036_PE961593_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "Meja+4 kursi berlengan+bangku, out, cokelat tua/Klösan biru tua, 143x75 cm",
+    "price": 6199000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/811/1381185_PE961787_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "kursi, luar ruang, dapat dilipat cokelat tua",
+    "price": 595000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/462/1246212_PE922035_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja+2 kursi lipat, luar ruang, cokelat tua/Frösön/Duvholmen krem, 60x62 cm",
+    "price": 2029000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/497/1249791_PE923511_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja lipat+4 kursi, luar ruang, dapat dilipat cokelat tua",
+    "price": 4379000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/498/1249804_PE923523_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja lipat+4 kursi, luar ruang, dapat dilipat cokelat tua/Kuddarna abu-abu muda-krem",
+    "price": 4879000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/800/1380040_PE961597_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "kursi+sandaran lengan, luar ruang, cokelat tua",
+    "price": 995000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/851/1285186_PE933255_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "Meja+4 kursi berlengan+bangku, out, cokelat tua, 143x75 cm",
+    "price": 5579000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/498/1249851_PE923562_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "kursi, luar ruang, dapat dilipat cokelat tua/Klösan biru tua",
+    "price": 690000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/811/1381183_PE961786_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "kursi, luar ruang, dapat dilipat cokelat tua/Frösön/Duvholmen krem",
+    "price": 715000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/497/1249715_PE923457_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ASKHOLMEN",
+    "description": "meja dinding+2 kursi lipat, l.ruang, cokelat tua/Frösön/Duvholmen krem, 70x44 cm",
+    "price": 1929000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/497/1249755_PE923482_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ÄSPHULT",
+    "description": "sarung kursi, universal/abu-abu",
+    "price": 300000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/995/1199516_PH191700_S3.webp",
+    "stock": 100,
+    "category": "Kursi"
+  },
+  {
+    "name": "ADILS/LINNMON",
+    "description": "meja, abu-abu tua/hitam, 100x60 cm",
+    "price": 429000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/771/0977191_PE813433_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "SANDSBERG",
+    "description": "meja, hitam, 67x67 cm",
+    "price": 499000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/743/1074349_PE856160_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "VIHALS",
+    "description": "meja, putih/putih, 74x74 cm",
+    "price": 549000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/888/1388807_PE964980_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "ALEX/LAGKAPTEN",
+    "description": "meja",
+    "price": 3299000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/220/1022010_PE832396_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "NORBERG",
+    "description": "daun meja lipat dipasang di dinding, putih, 74x60 cm",
+    "price": 799000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/366/0736622_PE740674_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "LACK",
+    "description": "meja samping, putih, 55x55 cm",
+    "price": 199000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/506/0750653_PE746802_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MICKE",
+    "description": "meja, putih, 105x50 cm",
+    "price": 1799000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/360/0736018_PE740345_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "SANDSBERG",
+    "description": "meja, hitam, 110x67 cm",
+    "price": 649000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/743/1074348_PE856162_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MICKE",
+    "description": "meja, hitam-cokelat, 105x50 cm",
+    "price": 1799000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/359/0735981_PE740299_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MICKE",
+    "description": "meja, hitam-cokelat, 73x50 cm",
+    "price": 999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/360/0736021_PE740348_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "VOXLÖV",
+    "description": "meja makan, bambu warna muda, 180x90 cm",
+    "price": 4999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/973/0997396_PE822660_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "NORDEN",
+    "description": "meja lipat, kayu birch, 26/89/152x80 cm",
+    "price": 3999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/987/0098713_PE179294_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "VIHALS",
+    "description": "meja, putih/putih, 125x74 cm",
+    "price": 749000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/888/1388805_PE964975_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "ADILS/LINNMON",
+    "description": "meja, efek kayu oak diwarnai putih/putih, 100x60 cm",
+    "price": 429000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/771/0977196_PE813438_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "TROTTEN",
+    "description": "meja, krem/putih, 120x70 cm",
+    "price": 1299000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/207/1020750_PE831977_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "STENARED",
+    "description": "meja makan, kesan batu quartz/bambu, 140x75 cm",
+    "price": 6499000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/881/0788199_PE763525_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "LAGKAPTEN/ADILS",
+    "description": "meja",
+    "price": 499000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/772/0977232_PE813475_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "LAGKAPTEN/ADILS",
+    "description": "meja, putih/abu-abu tua, 140x60 cm",
+    "price": 879000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/760/0976086_PE812984_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MITTPLAN",
+    "description": "meja, putih, 80x60 cm",
+    "price": 999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/851/1285100_PE933189_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "TORALD",
+    "description": "meja, putih, 65x40 cm",
+    "price": 299000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/554/1055403_PE847976_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MICKE",
+    "description": "meja, putih, 73x50 cm",
+    "price": 999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/360/0736022_PE740349_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MICKE",
+    "description": "meja, putih, 142x50 cm",
+    "price": 1999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/360/0736020_PE740347_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "VIHALS",
+    "description": "meja yang dapat dipanjangkan, putih, 120/180x74 cm",
+    "price": 1999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/704/1370472_PE958745_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MITTZON",
+    "description": "meja",
+    "price": 3899000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/094/1209402_PE909191_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "HÄGERNÄS",
+    "description": "meja dan 4 kursi, warna antik kayu pinus",
+    "price": 2799000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/509/1350925_PE951817_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "LISABO",
+    "description": "meja, veneer kayu ash, 140x78 cm",
+    "price": 3999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/371/0737105_PE740883_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MALM",
+    "description": "meja, putih, 140x65 cm",
+    "price": 2499000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/359/0735975_PE740309_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "GLADOM",
+    "description": "meja baki, hitam, 45x53 cm",
+    "price": 299000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/672/0567223_PE664991_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MITTZON",
+    "description": "meja duduk/berdiri, elektrik veneer kayu birch/putih, 120x80 cm",
+    "price": 8599000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/056/1205609_PE907167_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "TROTTEN",
+    "description": "meja duduk/berdiri, putih/antrasit, 120x70 cm",
+    "price": 2999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/207/1020759_PE831985_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "STRANDTORP",
+    "description": "meja yang dapat dipanjangkan, cokelat, 150/205/260x95 cm",
+    "price": 7999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/269/0926900_PE789586_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MITTZON",
+    "description": "meja, veneer kayu birch/putih, 120x80 cm",
+    "price": 3499000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/060/1206021_PE907345_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "VITTSJÖ",
+    "description": "meja tamu, hitam-cokelat/kaca, 75 cm",
+    "price": 899000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/353/0135348_PE292039_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MICKE",
+    "description": "meja kerja sudut, putih, 100x142 cm",
+    "price": 2999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/343/0734328_PE739442_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "VITTSJÖ",
+    "description": "meja bersusun, set isi 2, hitam-cokelat/kaca, 90x50 cm",
+    "price": 999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/356/0735687_PE740087_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MICKE",
+    "description": "meja, hitam-cokelat, 142x50 cm",
+    "price": 1999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/360/0736019_PE740346_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "TILLSLAG/LAGKAPTEN",
+    "description": "meja",
+    "price": 1159000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/761/0976109_PE813007_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MICKE",
+    "description": "meja, putih/antrasit, 105x50 cm",
+    "price": 1999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/218/0921886_PE787989_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "ALEX/LAGKAPTEN",
+    "description": "meja",
+    "price": 2089000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/220/1022006_PE832400_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "MICKE",
+    "description": "meja, antrasit/merah, 105x50 cm",
+    "price": 1999000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/218/0921882_PE787985_S3.webp",
+    "stock": 100,
+    "category": "Meja"
+  },
+  {
+    "name": "PÅDRAG",
+    "description": "vas, kaca bening, 17 cm",
+    "price": 29900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/690/0969056_PE810681_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BERÄKNA",
+    "description": "vas, kaca bening, 18 cm",
+    "price": 99900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/908/0490874_PE624746_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "VILJESTARK",
+    "description": "vas, kaca bening, 17 cm",
+    "price": 17900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/404/0640433_PE699813_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "VILJESTARK",
+    "description": "vas, kaca bening, 8 cm",
+    "price": 14900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/404/0640434_PE699814_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "POMP",
+    "description": "vas/lantera, kaca bening, 18 cm",
+    "price": 69900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/372/0637228_PE698184_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BERÄKNA",
+    "description": "vas, kaca bening, 15 cm",
+    "price": 49900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/398/0639826_PE699591_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "TIDVATTEN",
+    "description": "vas, kaca bening, 14 cm",
+    "price": 49900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/281/0528106_PE645656_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "KÄLLARHALS",
+    "description": "vas, oranye, 26 cm",
+    "price": 259000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/115/1311528_PE940024_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "CYLINDER",
+    "description": "vas, set isi 3, kaca bening",
+    "price": 329000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/389/0638963_PE699297_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "KÄLLARHALS",
+    "description": "vas, kuning, 22 cm",
+    "price": 259000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/115/1311541_PE940027_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "TIDVATTEN",
+    "description": "vas, kaca bening, 30 cm",
+    "price": 99900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/404/0640449_PE699830_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "STILREN",
+    "description": "vas, putih, 22 cm",
+    "price": 199000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/043/0704329_PE725345_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "KOPPARBJÖRK",
+    "description": "vas, kuning cerah, 21 cm",
+    "price": 299000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/902/1190218_PE904950_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BERÄKNA",
+    "description": "vas, kaca bening, 30 cm",
+    "price": 199000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/908/0490878_PE624750_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "GRADVIS",
+    "description": "vas, abu-abu, 19 cm",
+    "price": 99900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/068/1006835_PE825872_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "TIDVATTEN",
+    "description": "vas, kaca bening, 17 cm",
+    "price": 79900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/281/0528115_PE645662_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "KONSTFULL",
+    "description": "vas, hijau-coklat, 16 cm",
+    "price": 259000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/304/1030420_PE836274_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "GRADVIS",
+    "description": "vas, merah muda, 21 cm",
+    "price": 199000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/249/0524970_PE644685_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "SANNOLIK",
+    "description": "vas, merah muda, 17 cm",
+    "price": 79900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/694/0369472_PE551158_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "ÅTGÅNG",
+    "description": "vas, abu-abu, 26 cm",
+    "price": 199000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/673/0367307_PE549494_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "TONSÄTTA",
+    "description": "vas, biru, 21 cm",
+    "price": 219000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/043/0704342_PE725333_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "KONSTFULL",
+    "description": "vas, kaca bening/berpola, 26 cm",
+    "price": 329000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/307/1030738_PE836342_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "SMÄLLSPIREA",
+    "description": "vas, kaca bening/berpola, 17 cm",
+    "price": 59900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/476/1147665_PE883391_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "SMÄLLSPIREA",
+    "description": "vas, kaca bening/berpola, 22 cm",
+    "price": 99900,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/476/1147671_PE883396_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "GRADVIS",
+    "description": "vas dengan sisipan logam, kaca bening/warna emas, 21 cm",
+    "price": 219000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/663/1066310_PE852371_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "TONSÄTTA",
+    "description": "vas, abu-abu, 27 cm",
+    "price": 429000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/043/0704348_PE725339_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BERÄKNA",
+    "description": "vas, kaca bening, 45 cm",
+    "price": 359000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/398/0639834_PE699599_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "SOCKERÄRT",
+    "description": "vas/pitcher, putih, 16 cm",
+    "price": 159000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/177/0017776_PE226467_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "ÄRTBUSKE",
+    "description": "vas/penyiram tanaman, hijau terang, 24 cm",
+    "price": 259000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/155/1115560_PE872286_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "SOCKERÄRT",
+    "description": "vas/pitcher, putih, 22 cm",
+    "price": 249000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/177/0017777_PE226468_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "TIDVATTEN",
+    "description": "vas, kaca bening, 45 cm",
+    "price": 329000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/404/0640461_PE699812_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "PJÄTTERYD",
+    "description": "gambar, Vase With Twelve Sunflowers, 70x100 cm",
+    "price": 599000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/391/1239118_PE918778_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "RÄFFELBJÖRK",
+    "description": "vas, warna ibu mutiara, 20 cm",
+    "price": 429000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/155/1115553_PE872281_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "RÄFFELBJÖRK",
+    "description": "vas, warna ibu mutiara, 12 cm",
+    "price": 219000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/155/1115542_PE872277_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BEGÄRLIG",
+    "description": "vas, kaca bening, 29 cm",
+    "price": 429000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/372/0637227_PE698196_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BESTÅ",
+    "description": "meja TV dengan laci, putih/Västerviken/Stubbarp abu-abu tua, 120x42x48 cm",
+    "price": 3835000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/869/0986913_PE817395_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BESTÅ",
+    "description": "meja TV dengan pintu, putih/Västerviken putih, 180x42x38 cm",
+    "price": 4135000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/931/0993160_PE820426_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BESTÅ",
+    "description": "meja TV dengan pintu, putih Västerviken/Stubbarp/putih, 120x42x48 cm",
+    "price": 3495000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/854/0985439_PE816804_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BESTÅ",
+    "description": "meja TV dengan pintu, putih/Västerviken/Stubbarp putih, 120x42x74 cm",
+    "price": 4095000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/943/0994311_PE820931_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  },
+  {
+    "name": "BESTÅ",
+    "description": "meja TV dengan laci, putih/Västerviken/Stubbarp abu-abu tua, 120x42x48 cm",
+    "price": 3835000,
+    "thumbnail": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/869/0986913_PE817395_S3.webp",
+    "stock": 100,
+    "category": "Vas"
+  }
+]
