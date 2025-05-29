@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
     "daisyui": "^5.0.38",
     "jose": "^6.0.11",
     "jsonwebtoken": "^9.0.2",

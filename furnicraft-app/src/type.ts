@@ -7,3 +7,8 @@ export type ProductType = {
     "stock" : number,
     "category" : string
 }
+
+export type CustomErrorType = {
+    status : number ,
+    message : string
+}

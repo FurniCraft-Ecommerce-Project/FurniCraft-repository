@@ -13,8 +13,6 @@ export default function Footer () {
                     <li><a href="#" className="hover:text-black">Home</a></li>
                     <li><a href="#" className="hover:text-black">About</a></li>
                     <li><a href="#" className="hover:text-black">Product</a></li>
-                    <li><a href="#" className="hover:text-black">Collection</a></li>
-                    <li><a href="#" className="hover:text-black">Contact</a></li>
                     </ul>
                 </div>
                 <div>
