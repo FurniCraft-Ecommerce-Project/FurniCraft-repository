@@ -41,11 +41,11 @@ export async function POST(request: NextRequest) {
             }
         };
 
-        const order = await OrderModel.create({
-            userId: userId.id,
-            items: items,
-            orderId: order_id
-        });
+        // const order = await OrderModel.create({
+        //     userId: userId.id,
+        //     items: items,
+        //     orderId: order_id
+        // });
 
         const transaction = await snap.createTransaction(parameter)
         let transactionToken = transaction.token;
