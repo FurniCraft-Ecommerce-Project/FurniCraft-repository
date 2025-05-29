@@ -1,4 +1,5 @@
 import ButtonAddToCartDetail from "@/components/ButtonAddToCartDetail";
+import ButtonBuy from "@/components/ButtonBuy";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import formatRupiah from "@/helpers/formatRupiah";
@@ -41,7 +42,8 @@ export default async function ProductsDetail ({params}:{params : Promise<{slug :
                         </div>
 
                         <div className="flex gap-4 mt-6">
-                            <ButtonAddToCartDetail/>
+                            <ButtonAddToCartDetail product={data}/>
+                            <ButtonBuy/>
                         </div>
                         </div>
                     </div>
