@@ -4,7 +4,7 @@ import { z } from "zod";
 import { signBcrypt, verifyBcrypt } from "@/helpers/bcryptjs";
 import { generateToken } from "@/helpers/jwt";
 import { cookies } from "next/headers";
-
+//
 const NewUserSchema = z.object({
   username: z
     .string()
