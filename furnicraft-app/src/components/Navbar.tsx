@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar () { 
     return (
         <>
@@ -5,11 +7,21 @@ export default function Navbar () {
             <header className="flex justify-between items-center px-10 py-6 shadow-md bg-white">
                 <div className="text-xl font-bold">FurniCraft</div>
                 <nav className="space-x-6 hidden md:flex">
-                <a href="#" className="hover:text-gray-700">Home</a>
-                <a href="#" className="hover:text-gray-700">About</a>
-                <a href="#" className="hover:text-gray-700">Product</a>
-                <a href="#" className="hover:text-gray-700">Collection</a>
-                <a href="#" className="hover:text-gray-700">Contact</a>
+                <Link
+                    href="/" className="hover:text-gray-700"
+                >
+                    Home
+                </Link>
+                <Link
+                    href="/about" className="hover:text-gray-700"
+                >
+                    About
+                </Link>
+                <Link
+                    href="/products" className="hover:text-gray-700"
+                >
+                    Products
+                </Link>
                 </nav>
                 <div className="flex space-x-4 items-center">
                 <button className="hover:text-gray-700">
