@@ -1,12 +1,23 @@
+'use client'
+
 import CardWishlist from "@/components/CardWishlist";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { WishlistType } from "@/type";
+import { useEffect, useState } from "react";
 
-export default async function WishlistPage () {
+export default function WishlistPage () {
 
-    const response = await fetch(`http://localhost:3000/api/wishlist`);
-    const data : WishlistType[] = await response.json()
+    const [data, setData] = useState<WishlistType[]>([])
+
+    useEffect(() => {
+        const fetchDataWishlist = async () => {
+            const response = await fetch(`http://localhost:3000/api/wishlist`);
+            const resData : WishlistType[] = await response.json()
+            setData(resData)
+        }
+        fetchDataWishlist()
+    },[])
 
     return (
         <>
