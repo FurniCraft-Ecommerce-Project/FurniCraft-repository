@@ -5,6 +5,8 @@ import { useEffect } from "react";
 
 export default function ButtonPayment({data}: {data: CartType[]}) {
 
+    console.log("data", data);
+
     useEffect(() => {
 
         const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js";
