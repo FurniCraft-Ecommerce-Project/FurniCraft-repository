@@ -2,47 +2,93 @@ import { ObjectId } from "mongodb";
 import { db } from "../config/mongodb";
 
 class ProductModel {
-    static collection () {
-        return db.collection('Products')
+  static collection() {
+    return db.collection("Products");
+  }
+
+  static async getProductAll() {
+    try {
+      const data = await this.collection().find().toArray();
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async getProductPagination({
+    page,
+    name,
+  }: {
+    page: string;
+    name: string;
+  }) {
+    try {
+      const limit = 9;
+      const skip = limit * (+page - 1);
+
+      const arrQueryName = name
+        .trim()
+        .split(" ")
+        .map((el) => ({ name: { $regex: el, $options: "i" } }));
+
+      const data = await this.collection()
+        .find({
+          $and: arrQueryName,
+        })
+        .skip(skip)
+        .limit(limit)
+        .toArray();
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async getProductById(id: string) {
+    return await this.collection().findOne({ _id: new ObjectId(id) });
+  }
+
+  static async addProduct({
+    name,
+    description,
+    price,
+    thumbnail,
+    stock,
+    category,
+  }: {
+    name: string;
+    description: string;
+    price: number;
+    thumbnail: string;
+    stock: number;
+    category: string;
+  }) {
+    return await this.collection().insertOne({
+      name,
+      description,
+      price,
+      thumbnail,
+      stock,
+      category,
+    });
+  }
+
+  static async delProduct(id: string) {
+    //1. cari dulu produk berdasarkan id
+    const product = await this.getProductById(id);
+
+    //2. jika produk tidak ditemukan, lempar error
+    if (!product) {
+      throw {
+        status: 404,
+        message: "Product not found",
+      };
     }
 
-    static async getProductAll () {
-        try {
-
-            const data  = await this.collection().find().toArray()
-
-            return data     
-        } catch (error) {
-            throw error
-        }
-    }
-
-    static async getProductPagination ({page,name} : {page : string, name: string}) {
-        try {
-
-            const limit = 9
-            const skip = limit * (+page - 1)
-
-            const arrQueryName = name.trim().split(" ").map(el => ({name : {$regex : el, $options : "i"}}))
-
-            const data  = await this.collection()
-                            .find({
-                                $and : arrQueryName
-                            })
-                            .skip(skip)
-                            .limit(limit)
-                            .toArray()
-
-            return data     
-        } catch (error) {
-            throw error
-        }
-    }
-
-    static async getProductById (id : string) {
-        return await this.collection().findOne({_id : new ObjectId(id)})
-    }
-
+    return this.collection().deleteOne({ _id: new ObjectId(id) });
+  }
 }
 
-export default ProductModel
+export default ProductModel;
