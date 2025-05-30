@@ -47,6 +47,10 @@ class CartModel {
         return this.collection().deleteOne({_id : new ObjectId(id)})
     }
 
+    static async deleteCart(UserId : string) {
+        return this.collection().deleteMany({UserId : new ObjectId(UserId)})
+    }
+
 }
 
 export default CartModel
