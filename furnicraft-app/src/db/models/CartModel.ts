@@ -76,6 +76,20 @@ class CartModel {
         return this.collection().deleteMany({UserId : new ObjectId(UserId)})
     }
 
+    static async incrementCartQuantity(id : string) {
+        return this.collection().updateOne(
+            {_id : new ObjectId(id)},
+            {$inc : {quantity: 1}}
+        )
+    }
+
+    static async decrementCartQuantity(id : string) {
+        return this.collection().updateOne(
+            {_id : new ObjectId(id)},
+            {$inc : {quantity: -1}}
+        )
+    }
+
 }
 
 export default CartModel

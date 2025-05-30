@@ -1,4 +1,7 @@
 'use client'
+
+import errorHandler from "@/helpers/errorHandler";
+
 export default function ButtonDeleteCart ({orderId} : {orderId : string}) {
 
     const handleOnClick = async () => {
@@ -11,13 +14,13 @@ export default function ButtonDeleteCart ({orderId} : {orderId : string}) {
                 body: JSON.stringify({orderId}),
             });
             if (!response.ok) {
-                throw (await response.json())
+                throw await response.json()
             }
 
             window.location.reload()
 
         } catch (error) {
-            alert((error as Error).message)
+            errorHandler(error)
         }
     }
     return (

@@ -32,6 +32,7 @@ interface NewOrder {
     createdAt: Date;
     updatedAt: Date;
     orderId: string;
+    token: string;
     items: OrderDetail[];
 }
 
@@ -40,7 +41,7 @@ export default class OrderModel {
         return db.collection('Orders')
     }
 
-    static async create(data: { userId: string, items: CartItem[], orderId: string }) {
+    static async create(data: { userId: string, items: CartItem[], orderId: string, token: string }) {
         if (!data.items || data.items.length === 0) {
             throw { status: 400, message: "Your cart is empty" }
         }
@@ -55,14 +56,15 @@ export default class OrderModel {
             paidDate: null,
             createdAt: new Date(),
             updatedAt: new Date(),
+            orderId: data.orderId,
+            token: data.token,
             items: data.items.map(item => ({
                 productId: item.ProductId,
                 name: item.DetailProduct.name,
                 price: item.DetailProduct.price,
                 quantity: item.quantity,
                 subtotal: item.DetailProduct.price * item.quantity
-            })),
-            orderId: data.orderId
+            }))
         };
 
         const result = await this.collection().insertOne(newOrder)
@@ -82,5 +84,19 @@ export default class OrderModel {
         }
 
         return order;
+    }
+
+    static async findByUserId(userId: string) {
+        if (!userId) {
+            throw { status: 400, message: "User ID is required" }
+        }
+
+        const orders = await this.collection().find({ userId }).toArray();
+
+        if (orders.length === 0) {
+            throw { status: 404, message: "No orders found for this user" }
+        }
+
+        return orders;
     }
 }

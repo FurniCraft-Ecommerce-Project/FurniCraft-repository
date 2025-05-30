@@ -30,6 +30,11 @@ export default function Navbar () {
                 <div className="flex space-x-4 items-center">
                 
                 <Link
+                    href={'/order'}
+                >
+                    Order
+                </Link>
+                <Link
                     href={'/wishlist'}
                 >
                     <IoMdHeartEmpty className="h-5 w-5"/>
