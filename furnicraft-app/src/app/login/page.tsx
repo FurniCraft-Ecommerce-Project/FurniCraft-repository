@@ -2,7 +2,7 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 import Link from "next/link";
-// import Image from "next/image";
+import Image from "next/image";
 
 export default function LoginPage() {
   const [input, setInput] = useState({
@@ -125,31 +125,6 @@ export default function LoginPage() {
                 } rounded-md focus:outline-none focus:border-[#82776b] transition-colors duration-200`}
                 placeholder="Enter your password"
               />
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-[#82776b] border-gray-300 rounded"
-                />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-[#666666]"
-                >
-                  Remember me
-                </label>
-              </div>
-              <div className="text-sm">
-                <Link
-                  href="/forgot-password"
-                  className="text-[#82776b] hover:text-[#5d534a]"
-                >
-                  Forgot password?
-                </Link>
-              </div>
             </div>
 
             <button
