@@ -6,7 +6,7 @@ import formatRupiah from "@/helpers/formatRupiah";
 import { CartType } from "@/type";
 
 export default async function ProductsDetail() {
-  const response = await fetch(`http://localhost:3000/api/cart`, { cache: 'no-store' });
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart`);
   const data: CartType[] = await response.json();
 
   const total = data.reduce(

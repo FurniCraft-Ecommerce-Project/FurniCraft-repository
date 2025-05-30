@@ -3,7 +3,9 @@
 import { CartType } from "@/type";
 import { useEffect } from "react";
 
-export default function ButtonPayment({ data }: { data: CartType[] }) {
+export default function ButtonRepayment({ token, userId }: { token: string, userId: string }) {
+
+    console.log(token)
 
     useEffect(() => {
 
@@ -24,22 +26,7 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
 
     const handlePayment = async () => {
 
-        const user = {
-            "id": "683858bc8192fc57db299c85",
-            "name": "John Doe",
-            "email": "john@mail.com"
-        }
-
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
-            method: 'POST',
-            body: JSON.stringify({
-                userId: user,
-                items: data
-            })
-        });
-        const requestData = await response.json();
-
-        window.snap.pay(requestData.transactionToken, {
+        window.snap.pay(String(token), {
             onSuccess: async function (result) {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'PATCH',
@@ -51,7 +38,7 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
                 await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'DELETE',
                     body: JSON.stringify({
-                        userId: data[0].UserId
+                        userId: userId
                     })
                 });
 

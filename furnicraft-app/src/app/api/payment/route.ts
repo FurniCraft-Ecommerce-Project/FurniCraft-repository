@@ -1,6 +1,6 @@
 import CartModel from "@/db/models/CartModel";
 import OrderModel from "@/db/models/OrderModel";
-import errHandler from "@/helpers/errHandler";
+import errorHandler from "@/helpers/errorHandler";
 import { ProductType } from "@/type";
 import midtransClient from "midtrans-client"
 import { nanoid } from "nanoid";
@@ -44,17 +44,19 @@ export async function POST(request: NextRequest) {
             }
         };
 
+        const transaction = await snap.createTransaction(parameter)
+        let transactionToken = transaction.token;
+
         const order = await OrderModel.create({
             userId: userId.id,
             items: items,
-            orderId: order_id
+            orderId: order_id,
+            token: transactionToken
         });
 
-        const transaction = await snap.createTransaction(parameter)
-        let transactionToken = transaction.token;
         return Response.json({ message: 'Order created', transactionToken })
     } catch (error) {
-        return errHandler(error)
+        return errorHandler(error)
     }
 }
 
@@ -107,7 +109,7 @@ export async function PATCH(request: NextRequest) {
 
         return Response.json({ message: 'Success, payment received!' });
     } catch (error) {
-        return errHandler(error);
+        return errorHandler(error);
     }
 }
 
@@ -123,7 +125,7 @@ export async function DELETE(request: NextRequest) {
         await CartModel.deleteCart(userId);
         return Response.json({ message: 'All orders deleted successfully' });
     } catch (error) {
-        return errHandler(error);
+        return errorHandler(error);
     }
 }
 
