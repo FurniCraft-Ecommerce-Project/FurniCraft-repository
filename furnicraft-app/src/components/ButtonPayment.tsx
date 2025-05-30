@@ -7,7 +7,7 @@ export default function ButtonPayment() {
     useEffect(() => {
 
         const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js";
-        const clientKey = process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY || '';
+        const clientKey = process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY as string;
 
         const script = document.createElement('script')
         script.src = snapScript
@@ -52,22 +52,16 @@ export default function ButtonPayment() {
         const requestData = await response.json();
 
         window.snap.pay(requestData.transactionToken, {
-            onSuccess: function (result) {
-                console.log('Payment Success:', result);
-                // Handle success logic here
+            onSuccess: async function (result) {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({
+                        orderId: result.order_id
+                    })
+                });
+                const { message } = await response.json();
+                alert(message)
             },
-            // onPending: function (result) {
-            //     console.log('Payment Pending:', result);
-            //     // Handle pending logic here
-            // },
-            // onError: function (result) {
-            //     console.error('Payment Error:', result);
-            //     // Handle error logic here
-            // },
-            // onClose: function () {
-            //     console.log('Payment Dialog Closed');
-            //     // Handle dialog close logic here
-            // }
         });
     }
 
