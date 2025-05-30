@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
     "daisyui": "^5.0.38",
     "jose": "^6.0.11",
     "jsonwebtoken": "^9.0.2",
@@ -19,6 +21,8 @@
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "use-debounce": "^10.0.4",
     "zod": "^3.25.30"
   },
   "devDependencies": {

@@ -8,8 +8,22 @@ export type ProductType = {
     "category" : string
 }
 
+export type CustomErrorType = {
+    status : number ,
+    message : string
+}
 
-export type customError = {
-  message: string;
-  status?: number;
+export type CartType = {
+    "_id" : string,
+    "UserId" : string,
+    "ProductId" : string,
+    "quantity" : number,
+    "DetailProduct" : ProductType
+}
+
+export type WishlistType = {
+    "_id" : string,
+    "UserId" : string,
+    "ProductId" : string,
+    "DetailProduct" : ProductType
 }
