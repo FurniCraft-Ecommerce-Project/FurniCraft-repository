@@ -17,7 +17,7 @@ export default function Card ({product} : {product : ProductType}) {
               <p className="text-gray-800 font-medium mb-2">{formatRupiah(product.price)}</p>
               <span className="text-sm font-semibold bg-gray-100 px-2 py-1 rounded-full">{product.description}</span>
               <div className="text-right space-x-2">
-                <ButtonAddToWishlist />
+                <ButtonAddToWishlist product={product} />
                 <ButtonAddToCart product={product} />
               </div>
             </div>

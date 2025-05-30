@@ -20,3 +20,10 @@ export type CartType = {
     "quantity" : number,
     "DetailProduct" : ProductType
 }
+
+export type WishlistType = {
+    "_id" : string,
+    "UserId" : string,
+    "ProductId" : string,
+    "DetailProduct" : ProductType
+}
