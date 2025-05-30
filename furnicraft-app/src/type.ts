@@ -9,15 +9,30 @@ export type ProductType = {
 };
 
 export type CustomErrorType = {
-    status : number ,
-    message : string
-}
+  status: number;
+  message: string;
+};
+
+export type CartType = {
+  _id: string;
+  UserId: string;
+  ProductId: string;
+  quantity: number;
+  DetailProduct: ProductType;
+};
+
+export type WishlistType = {
+  _id: string;
+  UserId: string;
+  ProductId: string;
+  DetailProduct: ProductType;
+};
 
 export type NewUser = {
-    name: string;
-    username: string;
-    email: string;
-    password: string;
-    avatar: string;
-    role: string;
-  };
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  avatar: string;
+  role: string;
+};
