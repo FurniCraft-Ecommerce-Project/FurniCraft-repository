@@ -5,7 +5,11 @@ import { type NextRequest } from 'next/server'
 export async function POST(request : NextRequest) {
     try {
     
-    const {UserId, ProductId} = await request.json()
+    const {ProductId} = await request.json()
+
+    const UserId = request.headers.get('x-user-id')
+
+    if (!UserId) throw {status : 400, message : 'User ID not found'}
 
     const isAdded = await WishlistModel.getWishlistByUserIdProductId(UserId,ProductId)
 
@@ -21,10 +25,14 @@ export async function POST(request : NextRequest) {
 
 }
 
-export async function GET() {
+export async function GET(request : NextRequest) {
 
   try {
-    const response = await WishlistModel.getWishlist()
+    const UserId = request.headers.get('x-user-id') || ""
+    
+    if (!UserId) throw {status : 400, message : 'User ID not found'}
+
+    const response = await WishlistModel.getWishlistByUserId(UserId)
     return Response.json(response)
   } catch (error) {
     return errorHandler(error)
