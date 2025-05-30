@@ -9,6 +9,22 @@ interface OrderDetail {
     subtotal: number;
 }
 
+interface CartItem {
+    _id: string;
+    UserId: string;
+    ProductId: string;
+    quantity: number;
+    DetailProduct: {
+        _id: string;
+        name: string;
+        description: string;
+        price: number;
+        thumbnail: string;
+        stock: number;
+        category: string;
+    }
+}
+
 interface NewOrder {
     userId: string;
     status: string;
@@ -24,7 +40,7 @@ export default class OrderModel {
         return db.collection('Orders')
     }
 
-    static async create(data: { userId: string, items: OrderDetail[], orderId: string }) {
+    static async create(data: { userId: string, items: CartItem[], orderId: string }) {
         if (!data.items || data.items.length === 0) {
             throw { status: 400, message: "Your cart is empty" }
         }
@@ -40,11 +56,11 @@ export default class OrderModel {
             createdAt: new Date(),
             updatedAt: new Date(),
             items: data.items.map(item => ({
-                productId: item.productId,
-                name: item.name,
-                price: item.price,
+                productId: item.ProductId,
+                name: item.DetailProduct.name,
+                price: item.DetailProduct.price,
                 quantity: item.quantity,
-                subtotal: item.price * item.quantity
+                subtotal: item.DetailProduct.price * item.quantity
             })),
             orderId: data.orderId
         };

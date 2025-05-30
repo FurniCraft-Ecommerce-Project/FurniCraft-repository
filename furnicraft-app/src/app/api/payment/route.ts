@@ -1,5 +1,7 @@
+import CartModel from "@/db/models/CartModel";
 import OrderModel from "@/db/models/OrderModel";
 import errHandler from "@/helpers/errHandler";
+import { ProductType } from "@/type";
 import midtransClient from "midtrans-client"
 import { nanoid } from "nanoid";
 import { NextRequest } from "next/server";
@@ -21,8 +23,8 @@ export async function POST(request: NextRequest) {
         }
         const order_id = "TRX-" + nanoid()
 
-        const totalPrice = items.reduce((total: number, item: { price: number; quantity: number }) => {
-            return total + (item.price * item.quantity);
+        const totalPrice = items.reduce((total: number, item: { DetailProduct: ProductType; quantity: number }) => {
+            return total + (item.DetailProduct.price * item.quantity);
         }, 0);
 
         const gross_amount = totalPrice;
@@ -74,6 +76,8 @@ export async function PATCH(request: NextRequest) {
         }
 
         const updatedOrder = await OrderModel.findByOrderId(orderId);
+
+        console.log("updatedOrder", updatedOrder);
         if (!updatedOrder) {
             throw { status: 404, message: "Order not found" }
         }
@@ -102,6 +106,22 @@ export async function PATCH(request: NextRequest) {
         );
 
         return Response.json({ message: 'Success, payment received!' });
+    } catch (error) {
+        return errHandler(error);
+    }
+}
+
+export async function DELETE(request: NextRequest) {
+    try {
+
+        const body = await request.json();
+        const { userId } = body;
+        if (!userId) {
+            throw { status: 400, message: "User ID is required" }
+        }
+
+        await CartModel.deleteCart(userId);
+        return Response.json({ message: 'All orders deleted successfully' });
     } catch (error) {
         return errHandler(error);
     }

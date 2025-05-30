@@ -6,7 +6,11 @@ export async function POST(request : NextRequest) {
 
   try {
     
-    const {UserId, ProductId, quantity} = await request.json()
+    const {ProductId, quantity} = await request.json()
+    
+    const UserId = request.headers.get('x-user-id')
+
+    if (!UserId) throw {status : 400, message : 'User ID not found'}
 
     const isAdded = await CartModel.getCartByUserIdProductId(UserId,ProductId)
 
@@ -22,10 +26,13 @@ export async function POST(request : NextRequest) {
 
 }
 
-export async function GET() {
+export async function GET(request : NextRequest) {
 
   try {
-    const response = await CartModel.getCart()
+    const UserId = request.headers.get('x-user-id') || ""
+    if (!UserId) throw {status : 400, message : 'User ID not found'}
+
+    const response = await CartModel.getCartByUserId(UserId)
     return Response.json(response)
   } catch (error) {
     return errorHandler(error)
