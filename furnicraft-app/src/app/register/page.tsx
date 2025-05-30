@@ -2,8 +2,10 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [input, setInput] = useState({
     name: "",
     username: "",
@@ -15,6 +17,8 @@ export default function RegisterPage() {
   });
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -28,6 +32,8 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
       const res = await fetch("http://localhost:3000/api/register", {
         method: "POST",
@@ -42,13 +48,21 @@ export default function RegisterPage() {
       if (!res.ok) {
         // Tampilkan error dari UserModel
         setError(data.message || "An error occurred during registration");
+        setIsLoading(false);
         return;
       }
 
-      // Redirect ke login page setelah berhasil register
-      window.location.href = "/login";
+      // Set success state to true
+      setSuccess(true);
+      setError("");
+
+      // Redirect ke login page setelah berhasil register dengan delay
+      setTimeout(() => {
+        router.push("/login");
+      }, 2000);
     } catch (err) {
       setError((err as Error).message || "Failed to register");
+      setIsLoading(false);
     }
   };
 
@@ -82,6 +96,29 @@ export default function RegisterPage() {
             Create your account
           </h2>
 
+          {/* Success notification */}
+          {success && (
+            <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-400 text-green-700 rounded-r-md">
+              <div className="flex">
+                <svg
+                  className="h-5 w-5 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <div>
+                  <p className="font-medium">Registration successful!</p>
+                  <p className="text-sm">Redirecting you to login page...</p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Error notification */}
           {error && (
             <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-400 text-red-700 rounded-r-md">
@@ -112,7 +149,7 @@ export default function RegisterPage() {
                 htmlFor="username"
                 className="block text-sm font-medium text-[#454545] mb-2"
               >
-                Username
+                Username <span className="text-red-500">*</span>
               </label>
               <input
                 id="username"
@@ -129,7 +166,7 @@ export default function RegisterPage() {
                 htmlFor="email"
                 className="block text-sm font-medium text-[#454545] mb-2"
               >
-                Email Address
+                Email Address <span className="text-red-500">*</span>
               </label>
               <input
                 id="email"
@@ -146,7 +183,7 @@ export default function RegisterPage() {
                 htmlFor="password"
                 className="block text-sm font-medium text-[#454545] mb-2"
               >
-                Password
+                Password <span className="text-red-500">*</span>
               </label>
               <input
                 id="password"
@@ -163,9 +200,42 @@ export default function RegisterPage() {
 
             <button
               type="submit"
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#333333] hover:bg-[#262626] focus:outline-none transition-colors duration-200"
+              disabled={isLoading || success}
+              className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
+                isLoading || success
+                  ? "bg-[#666666] cursor-not-allowed"
+                  : "bg-[#333333] hover:bg-[#262626]"
+              } focus:outline-none transition-colors duration-200`}
             >
-              Sign Up
+              {isLoading ? (
+                <>
+                  <svg
+                    className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Processing...
+                </>
+              ) : success ? (
+                "Registered Successfully"
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </form>
 
