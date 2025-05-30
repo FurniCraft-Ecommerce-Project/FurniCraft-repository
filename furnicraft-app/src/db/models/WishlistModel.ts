@@ -27,6 +27,30 @@ class WishlistModel {
             ]
         ).toArray()
     }
+    static async getWishlistByUserId (UserId : string) {
+        return await this.collection().aggregate(
+            [
+                {
+                    '$match' : {
+                        'UserId' : new ObjectId(UserId)
+                    }
+                },
+                {
+                    '$lookup': {
+                    'from': 'Products', 
+                    'localField': 'ProductId', 
+                    'foreignField': '_id', 
+                    'as': 'DetailProduct'
+                    }
+                }, {
+                    '$unwind': {
+                    'path': '$DetailProduct', 
+                    'preserveNullAndEmptyArrays': true
+                    }
+                }
+            ]
+        ).toArray()
+    }
     static async getWishlistByUserIdProductId (UserId : string, ProductId : string) {
         return await this.collection().findOne({
             $and : [

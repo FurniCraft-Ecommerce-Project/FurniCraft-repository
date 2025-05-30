@@ -1,18 +1,34 @@
+'use client'
+
 import ButtonDeleteCart from "@/components/ButtonDeleteCart";
 import ButtonPayment from "@/components/ButtonPayment";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import formatRupiah from "@/helpers/formatRupiah";
 import { CartType } from "@/type";
+import { useEffect, useState } from "react";
 
-export default async function ProductsDetail() {
-  const response = await fetch(`http://localhost:3000/api/cart`, { cache: 'no-store' });
-  const data: CartType[] = await response.json();
+export default function ProductsDetail() {
 
-  const total = data.reduce(
-    (acc, el) => acc + (el.quantity * (el.DetailProduct?.price || 0)),
-    0
-  );
+  const [data, setData] = useState<CartType[]>([])
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+      const fetchDataWishlist = async () => {
+          const response = await fetch(`http://localhost:3000/api/cart`, { cache: 'no-store' });
+          const resData : CartType[] = await response.json()
+          setData(resData)
+      }
+      fetchDataWishlist()
+  },[])
+
+  useEffect(() => {
+    const totalPrice = data.reduce(
+      (acc, el) => acc + el.quantity * (el.DetailProduct?.price ?? 0),
+      0
+    );
+    setTotal(totalPrice);
+  }, [data]);
 
   return (
     <>

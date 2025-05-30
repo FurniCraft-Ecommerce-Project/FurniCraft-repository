@@ -10,7 +10,7 @@ export default function ButtonAddToWishlist ({product} : {product : ProductType}
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({UserId : "683858bc8192fc57db299c85", ProductId: product._id, quantity : 1}),
+                body: JSON.stringify({ProductId: product._id}),
             });
             if (!response.ok) {
                 throw (await response.json())

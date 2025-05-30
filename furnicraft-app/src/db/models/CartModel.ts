@@ -43,6 +43,31 @@ class CartModel {
         ).toArray()
     }
 
+    static async getCartByUserId (UserId : string) {
+        return await this.collection().aggregate(
+            [
+                {
+                    '$match' : {
+                        'UserId' : new ObjectId(UserId)
+                    }
+                },
+                {
+                    '$lookup': {
+                    'from': 'Products', 
+                    'localField': 'ProductId', 
+                    'foreignField': '_id', 
+                    'as': 'DetailProduct'
+                    }
+                }, {
+                    '$unwind': {
+                    'path': '$DetailProduct', 
+                    'preserveNullAndEmptyArrays': true
+                    }
+                }
+            ]
+        ).toArray()
+    }
+
     static async delCart(id : string) {
         return this.collection().deleteOne({_id : new ObjectId(id)})
     }
