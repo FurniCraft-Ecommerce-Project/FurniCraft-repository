@@ -76,6 +76,8 @@ export async function PATCH(request: NextRequest) {
         }
 
         const updatedOrder = await OrderModel.findByOrderId(orderId);
+
+        console.log("updatedOrder", updatedOrder);
         if (!updatedOrder) {
             throw { status: 404, message: "Order not found" }
         }
