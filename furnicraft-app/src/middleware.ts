@@ -42,7 +42,7 @@ export const config = {
     matcher: [
         '/api/wishlist/:path*',
         '/wishlist/:path*',
-        // '/api/cart/:path*',
-        // '/cart/:path*'
+        '/api/cart/:path*',
+        '/cart/:path*'
     ],
 }
