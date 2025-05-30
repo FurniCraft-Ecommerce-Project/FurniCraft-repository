@@ -62,7 +62,7 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
     }
 
     return (
-        <button onClick={handlePayment} className="mt-8 px-6 py-3 bg-green-600 text-white rounded-full shadow hover:bg-green-700 transition">
+        <button onClick={handlePayment} className="mt-8 px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
             Proceed to Payment
         </button>
     )
