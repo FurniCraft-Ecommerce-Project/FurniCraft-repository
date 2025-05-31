@@ -47,7 +47,7 @@ export default function ButtonRepayment({ token, userId }: { token: string, user
     }
 
     return (
-        <button onClick={handlePayment} className=" px-2 py-2 bg-green-600 text-white rounded-sm shadow hover:bg-green-700 transition">
+        <button onClick={handlePayment} className=" px-2 py-2 bg-green-600 text-white rounded-sm shadow hover:bg-green-700 transition" style={{cursor: "pointer"}}>
             Continue Payment
         </button>
     )

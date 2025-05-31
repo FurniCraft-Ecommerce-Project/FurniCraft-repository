@@ -6,14 +6,14 @@ import React from 'react';
 
 export default async function HomePage() {
 
-  const response = await fetch("http://localhost:3000/api/products");
-  const products : ProductType[] = await response.json()
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`);
+  const products: ProductType[] = await response.json()
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      
+
       {/* Navbar */}
-      <Navbar/>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col justify-center items-center text-center bg-cover bg-center px-4" style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0, 0, 0, 0.14)), url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=2892&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
@@ -30,13 +30,13 @@ export default async function HomePage() {
         <p className="text-gray-700 max-w-xl mx-auto mb-12">These products are crafted using wood sourced responsibly and with sustainability in mind, perfect for modern homes with a natural touch.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {products.map((el, idx) => (
-            <Card key={idx} product={el}/>
+            <Card key={idx} product={el} />
           ))}
         </div>
       </section>
 
       {/* footer */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

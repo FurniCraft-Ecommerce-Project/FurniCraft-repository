@@ -16,7 +16,7 @@ export default function ProductsDetail() {
   const [total, setTotal] = useState(0);
 
   const fetchDataWishlist = async () => {
-    const response = await fetch(`http://localhost:3000/api/cart`, { cache: 'no-store' });
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart`, { cache: 'no-store' });
     const resData: CartType[] = await response.json()
     setData(resData)
   }
