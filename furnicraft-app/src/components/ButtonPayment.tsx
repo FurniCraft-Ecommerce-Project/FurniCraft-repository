@@ -23,17 +23,9 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
     }, []);
 
     const handlePayment = async () => {
-
-        const user = {
-            "id": "683858bc8192fc57db299c85",
-            "name": "John Doe",
-            "email": "john@mail.com"
-        }
-
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
             method: 'POST',
             body: JSON.stringify({
-                userId: user,
                 items: data
             })
         });

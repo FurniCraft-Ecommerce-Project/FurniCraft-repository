@@ -51,6 +51,24 @@ class ProductModel {
         return product.stock
     }
 
+    // buat function yang menerima array of product IDs dan quantity beli lalu mengecek jumlah stok untuk setiap produk, jika stok tidak mencukupi, lempar error
+    static async checkStockByIds(ids: string[], quantities: number[]) {
+        if (ids.length !== quantities.length) {
+            throw { status: 400, message: "Product IDs and quantities must have the same length" }
+        }
+
+        const products = await this.collection().find({ _id: { $in: ids.map(id => new ObjectId(id)) } }).toArray()
+
+        for (let i = 0; i < products.length; i++) {
+            const product = products[i]
+            if (product.stock < quantities[i]) {
+                throw { status: 400, message: `Stock for product ${product.name} is not sufficient, stock is ${product.stock}` }
+            }
+        }
+
+        return true
+    }
+
 }
 
 export default ProductModel

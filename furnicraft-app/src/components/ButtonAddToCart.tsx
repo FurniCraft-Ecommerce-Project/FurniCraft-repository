@@ -1,7 +1,7 @@
 'use client'
 import { ProductType } from "@/type";
 import { IoCartOutline } from "@react-icons/all-files/io5/IoCartOutline";
-export default function ButtonAddToCart ({product} : {product : ProductType}) {
+export default function ButtonAddToCart ({product, page} : {product : ProductType, page : string}) {
 
     const handleOnClick = async () => {
 
@@ -25,6 +25,11 @@ export default function ButtonAddToCart ({product} : {product : ProductType}) {
     }
 
     return (
+        page === 'detail' ?
+        <button className="flex-1 border border-gray py-2 rounded-full hover:bg-gray-500 hover:text-white" onClick={handleOnClick}>
+            Add to Cart
+        </button>
+        :
         <button className="cursor-pointer" onClick={handleOnClick}>
             <IoCartOutline className="h-7 w-7"/>
         </button>
