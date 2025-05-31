@@ -3,6 +3,7 @@ import ButtonAddToCart from "./ButtonAddToCart";
 import ButtonAddToWishlist from "./ButtonAddToWishlist";
 import { IoMdHeartEmpty } from "@react-icons/all-files/io/IoMdHeartEmpty";
 import { IoCartOutline } from "@react-icons/all-files/io5/IoCartOutline";
+import { Toaster } from "react-hot-toast";
 
 export default function Navbar () { 
     return (
@@ -53,6 +54,7 @@ export default function Navbar () {
 
                 </div>
             </header>
+            <Toaster position="top-center" />
         </>
     )
 }

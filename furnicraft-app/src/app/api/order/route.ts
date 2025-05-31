@@ -4,7 +4,8 @@ import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
-        const userId = '683858bc8192fc57db299c85' // Replace with actual user ID retrieval logic
+        const userId = request.headers.get('x-user-id')
+        
         if (!userId) throw { message: "User ID is required", status: 400 };
 
         const orders = await OrderModel.findByUserId(userId);

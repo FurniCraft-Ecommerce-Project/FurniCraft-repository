@@ -4,7 +4,6 @@ import { cookies } from 'next/headers'
 import { verifyWithJose } from './helpers/jwt'
 import errorHandler from './helpers/errorHandler'
  
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
 
     try {
@@ -43,6 +42,8 @@ export const config = {
         '/api/wishlist/:path*',
         '/wishlist/:path*',
         '/api/cart/:path*',
-        '/cart/:path*'
+        '/cart/:path*',
+        '/api/payment/:path*',
+        '/api/order/:path*',
     ],
 }

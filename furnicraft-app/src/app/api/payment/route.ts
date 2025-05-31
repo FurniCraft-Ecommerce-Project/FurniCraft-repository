@@ -1,5 +1,6 @@
 import CartModel from "@/db/models/CartModel";
 import OrderModel from "@/db/models/OrderModel";
+import UserModel from "@/db/models/UserModel";
 import errorHandler from "@/helpers/errorHandler";
 import { ProductType } from "@/type";
 import midtransClient from "midtrans-client"
@@ -13,8 +14,9 @@ const snap = new midtransClient.Snap({
 
 export async function POST(request: NextRequest) {
     try {
+        const userId = request.headers.get('x-user-id')
         const body = await request.json();
-        const { userId, items } = body;
+        const { items } = body;
         if (!items || items.length === 0) {
             throw { status: 400, message: "Your cart is empty" }
         }
@@ -29,6 +31,11 @@ export async function POST(request: NextRequest) {
 
         const gross_amount = totalPrice;
 
+        const user = await UserModel.findById(userId);
+        if (!user) {
+            throw { status: 404, message: "User not found" }
+        }
+
         let parameter = {
             "transaction_details": {
                 "order_id": order_id,
@@ -38,17 +45,17 @@ export async function POST(request: NextRequest) {
                 "secure": true
             },
             "customer_details": {
-                "first_name": userId.name,
-                "email": userId.email,
-                "phone": "08111222333"
+                "first_name": user.name,
+                "email": user.email,
+                // "phone": "08111222333"
             }
         };
 
         const transaction = await snap.createTransaction(parameter)
         let transactionToken = transaction.token;
 
-        const order = await OrderModel.create({
-            userId: userId.id,
+        await OrderModel.create({
+            userId: userId,
             items: items,
             orderId: order_id,
             token: transactionToken
@@ -79,7 +86,6 @@ export async function PATCH(request: NextRequest) {
 
         const updatedOrder = await OrderModel.findByOrderId(orderId);
 
-        console.log("updatedOrder", updatedOrder);
         if (!updatedOrder) {
             throw { status: 404, message: "Order not found" }
         }

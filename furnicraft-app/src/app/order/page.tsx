@@ -1,8 +1,11 @@
+'use client';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import formatRupiah from "@/helpers/formatRupiah";
 import ButtonPayment from "@/components/ButtonPayment";
 import ButtonRepayment from "@/components/ButtonRepayment";
+import { use, useEffect, useState } from "react";
+import { set } from "zod/v4";
 // import { FaShoppingBag } from "react-icons/fa";
 // import { BsThreeDotsVertical } from "react-icons/bs";
 
@@ -27,11 +30,19 @@ interface OrderType {
   items: OrderDetail[];
 }
 
-export default async function OrdersPage() {
-  const response = await fetch(`http://localhost:3000/api/order`);
-  const orders: OrderType[] = await response.json();
+export default function OrdersPage() {
+  const [orders, setOrders] = useState<OrderType[]>([])
 
-  console.log(orders);
+  const fetchOrders = async () => {
+    const response = await fetch(`http://localhost:3000/api/order`);
+    const data = await response.json();
+    setOrders(data);
+  }
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -52,7 +63,7 @@ export default async function OrdersPage() {
                 month: 'long',
                 year: 'numeric'
               });
-              
+
               return (
                 <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
                   {/* Header */}
@@ -66,16 +77,16 @@ export default async function OrdersPage() {
                       </span>
                     </div>
                     {order.status.toLowerCase() === "pending" && (
-                        // buat tombol bayar
-                        <ButtonRepayment token={order.token} userId={order.userId}/>
+                      // buat tombol bayar
+                      <ButtonRepayment token={order.token} userId={order.userId} />
                     )}
                   </div>
-                  
+
                   {/* Payment info (if needed) */}
                   <div className="bg-gray-50 p-4 text-sm">
                     <p>Order status: <span className="font-medium">{order.status}</span></p>
                   </div>
-                  
+
                   {/* First item preview */}
                   {order.items.length > 0 && (
                     <div className="p-4 border-b border-gray-200">
@@ -95,7 +106,7 @@ export default async function OrdersPage() {
                       </div>
                     </div>
                   )}
-                  
+
                   {/* Footer with total */}
                   <div className="p-4 flex justify-between items-center">
                     <div>

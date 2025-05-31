@@ -4,6 +4,7 @@ import { z } from "zod";
 import { signBcrypt, verifyBcrypt } from "@/helpers/bcryptjs";
 import { generateToken } from "@/helpers/jwt";
 import { cookies } from "next/headers";
+import { ObjectId } from "mongodb";
 //
 const NewUserSchema = z.object({
   username: z
@@ -67,11 +68,18 @@ class UserModel {
   }
 
   static async findByEmail(email: string) {
-    // console.log(email)
+    if (!email) throw { status: 400, message: "Email is required" };
 
     const user = await this.collection().findOne({
       email: { $regex: email, $options: "i" },
     });
+    return user;
+  }
+
+  static async findById(id: string) {
+    if (!id) throw { status: 400, message: "Id is required" };
+
+    const user = await this.collection().findOne({ _id: new ObjectId(id) });
     return user;
   }
 
@@ -95,6 +103,7 @@ class UserModel {
 
     return access_token;
   }
+
 }
 
 export default UserModel;
