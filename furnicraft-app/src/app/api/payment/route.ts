@@ -7,6 +7,15 @@ import midtransClient from "midtrans-client"
 import { nanoid } from "nanoid";
 import { NextRequest } from "next/server";
 
+interface MidtransItem {
+    id: string;
+    price: number;
+    quantity: number;
+    name: string;
+}
+
+type MidtransItems = MidtransItem[];
+
 const snap = new midtransClient.Snap({
     isProduction: false,
     serverKey: process.env.MIDTRANS_SERVER_KEY
@@ -17,6 +26,7 @@ export async function POST(request: NextRequest) {
         const userId = request.headers.get('x-user-id')
         const body = await request.json();
         const { items } = body;
+
         if (!items || items.length === 0) {
             throw { status: 400, message: "Your cart is empty" }
         }
@@ -29,26 +39,43 @@ export async function POST(request: NextRequest) {
             return total + (item.DetailProduct.price * item.quantity);
         }, 0);
 
-        const gross_amount = totalPrice;
-
         const user = await UserModel.findById(userId);
         if (!user) {
             throw { status: 404, message: "User not found" }
         }
 
+        const transformedItems: MidtransItems = items.map((item: { DetailProduct: ProductType; quantity: number }) => ({
+            id: item.DetailProduct._id,
+            price: item.DetailProduct.price,
+            quantity: item.quantity,
+            name: item.DetailProduct.name
+        }));
+
         let parameter = {
             "transaction_details": {
                 "order_id": order_id,
-                "gross_amount": gross_amount
+                "gross_amount": totalPrice
             },
             "credit_card": {
                 "secure": true
             },
             "customer_details": {
                 "first_name": user.name,
+                "email": user.email
+            },
+            "item_details": transformedItems,
+            "shipping_address": {
+                "first_name": user.name,
                 "email": user.email,
-                // "phone": "08111222333"
-            }
+                "phone": "0812345678910",
+                "address": "Jl. Sultan Iskandar Muda No.7, RT.5/RW.9, Kby. Lama Sel., Kec. Kby. Lama",
+                "city": "Jakarta Selatan",
+                "postal_code": "12240",
+                "country_code": "IDN"
+            },
+  "enabled_payments": [
+    "credit_card"
+  ],
         };
 
         const transaction = await snap.createTransaction(parameter)
