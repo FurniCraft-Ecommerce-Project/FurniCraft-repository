@@ -1,13 +1,3 @@
-export type ProductType = {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  thumbnail: string;
-  stock: number;
-  category: string;
-};
-
 export type CustomErrorType = {
   status: number;
   message: string;
@@ -20,6 +10,37 @@ export type CartType = {
   quantity: number;
   DetailProduct: ProductType;
 };
+
+export type ProductType = {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  thumbnail: string;
+  stock: number;
+  category: string;
+};
+
+export interface OrderType {
+  _id?: string;
+  orderId: string;
+  userId: string;
+  status: string;
+  paidDate: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+  token: string;
+  items: OrderDetail[];
+}
+
+export interface OrderDetail {
+  productId: string;
+  name: string;
+  price: number;
+  quantity: number;
+  subtotal: number;
+  thumbnail: string;
+}
 
 export type WishlistType = {
   _id: string;

@@ -2,16 +2,16 @@
 
 import { IoMdTrash } from "@react-icons/all-files/io/IoMdTrash";
 
-export default function ButtonDeleteWishlist ({wishlistId} : {wishlistId : string}) {
+export default function ButtonDeleteWishlist({ wishlistId }: { wishlistId: string }) {
 
     const handleOnClick = async () => {
         try {
-            const response = await fetch("http://localhost:3000/api/wishlist", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({wishlistId}),
+                body: JSON.stringify({ wishlistId }),
             });
             if (!response.ok) {
                 throw (await response.json())

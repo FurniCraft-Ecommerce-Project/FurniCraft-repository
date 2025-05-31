@@ -25,7 +25,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/api/login", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,11 +97,10 @@ export default function LoginPage() {
                 name="email"
                 type="email"
                 onChange={handleChange}
-                className={`w-full px-4 py-3 border ${
-                  error.includes("email") || error === "User not found"
+                className={`w-full px-4 py-3 border ${error.includes("email") || error === "User not found"
                     ? "border-red-400"
                     : "border-[#e0e0e0]"
-                } rounded-md focus:outline-none focus:border-[#82776b] transition-colors duration-200`}
+                  } rounded-md focus:outline-none focus:border-[#82776b] transition-colors duration-200`}
                 placeholder="Enter your email"
               />
             </div>
@@ -118,11 +117,10 @@ export default function LoginPage() {
                 name="password"
                 type="password"
                 onChange={handleChange}
-                className={`w-full px-4 py-3 border ${
-                  error.includes("password") || error === "Invalid password"
+                className={`w-full px-4 py-3 border ${error.includes("password") || error === "Invalid password"
                     ? "border-red-400"
                     : "border-[#e0e0e0]"
-                } rounded-md focus:outline-none focus:border-[#82776b] transition-colors duration-200`}
+                  } rounded-md focus:outline-none focus:border-[#82776b] transition-colors duration-200`}
                 placeholder="Enter your password"
               />
             </div>
