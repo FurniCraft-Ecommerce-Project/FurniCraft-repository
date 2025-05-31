@@ -1,7 +1,7 @@
 "use client";
 
-import { CartType } from "@/type";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 export default function ButtonRepayment({ token, userId }: { token: string, userId: string }) {
 
@@ -23,9 +23,8 @@ export default function ButtonRepayment({ token, userId }: { token: string, user
     }, []);
 
     const handlePayment = async () => {
-
         window.snap.pay(String(token), {
-            onSuccess: async function (result) {
+            onSuccess: async function (result: any) {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'PATCH',
                     body: JSON.stringify({
@@ -41,7 +40,20 @@ export default function ButtonRepayment({ token, userId }: { token: string, user
                 });
 
                 const { message } = await response.json();
-                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order/thank-you/${result.order_id}`;
+                toast.success(message);
+                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order-list/thank-you/${result.order_id}`;
+            },
+            onPending: function (result: any) {
+                /* You may add your own implementation here */
+                alert("wating your payment!"); console.log(result);
+            },
+            onError: function (result: any) {
+                /* You may add your own implementation here */
+                alert("payment failed!"); console.log(result);
+            },
+            onClose: function () {
+                /* You may add your own implementation here */
+                alert('you closed the popup without finishing the payment');
             }
         });
     }

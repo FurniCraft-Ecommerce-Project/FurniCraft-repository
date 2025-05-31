@@ -45,5 +45,6 @@ export const config = {
         '/cart/:path*',
         '/api/payment/:path*',
         '/api/order/:path*',
+        '/order-list/:path*',
     ],
 }
