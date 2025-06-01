@@ -35,43 +35,18 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
                 items: data
             })
         });
-        const requestData = await response.json();
+        const { transactionToken } = await response.json();
 
-        window.snap.pay(requestData.transactionToken, {
+        window.snap.pay(transactionToken, {
             onSuccess: async function (result: any) {
-                console.log(result, 'result');
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'PATCH',
-                    body: JSON.stringify({
-                        orderId: result.order_id,
-                        status: result.transaction_status,
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderId: result.order_id })
                 });
 
-                await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
-                    method: 'DELETE',
-                    body: JSON.stringify({
-                        userId: data[0].UserId
-                    })
-                });
-
-                const { message } = await response.json();
-                toast.success(message);
-                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order-list/thank-you/${result.order_id}`;
-            },
-            onPending: function (result: any) {
-                /* You may add your own implementation here */
-                console.log(result);
-                alert("wating your payment!"); 
-            },
-            onError: function (result: any) {
-                /* You may add your own implementation here */
-                console.log(result);
-                alert("payment failed!"); 
-            },
-            onClose: function () {
-                /* You may add your own implementation here */
-                alert('you closed the popup without finishing the payment');
+                const { message, _id } = await response.json();
+                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order-list/thank-you/${_id}`;
             }
         });
     }

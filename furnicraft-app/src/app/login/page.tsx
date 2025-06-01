@@ -2,7 +2,6 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function LoginPage() {
   const [input, setInput] = useState({
@@ -33,12 +32,8 @@ export default function LoginPage() {
         body: JSON.stringify(input),
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
-        // Tampilkan error dari UserModel
-        setError(data.message || "An error occurred during login");
-        return;
+        throw await res.json();
       }
 
       window.location.href = "/";
@@ -98,8 +93,8 @@ export default function LoginPage() {
                 type="email"
                 onChange={handleChange}
                 className={`w-full px-4 py-3 border ${error.includes("email") || error === "User not found"
-                    ? "border-red-400"
-                    : "border-[#e0e0e0]"
+                  ? "border-red-400"
+                  : "border-[#e0e0e0]"
                   } rounded-md focus:outline-none focus:border-[#82776b] transition-colors duration-200`}
                 placeholder="Enter your email"
               />
@@ -118,8 +113,8 @@ export default function LoginPage() {
                 type="password"
                 onChange={handleChange}
                 className={`w-full px-4 py-3 border ${error.includes("password") || error === "Invalid password"
-                    ? "border-red-400"
-                    : "border-[#e0e0e0]"
+                  ? "border-red-400"
+                  : "border-[#e0e0e0]"
                   } rounded-md focus:outline-none focus:border-[#82776b] transition-colors duration-200`}
                 placeholder="Enter your password"
               />
@@ -128,6 +123,7 @@ export default function LoginPage() {
             <button
               type="submit"
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#333333] hover:bg-[#262626] focus:outline-none transition-colors duration-200"
+              style={{ cursor: "pointer" }}
             >
               Sign In
             </button>

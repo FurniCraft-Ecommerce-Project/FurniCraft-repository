@@ -1,11 +1,11 @@
 import CartModel from "@/db/models/CartModel";
 import OrderModel from "@/db/models/OrderModel";
 import UserModel from "@/db/models/UserModel";
+import generateOrderId from "@/helpers/createOrderId";
 import errorHandler from "@/helpers/errorHandler";
 import { ProductType } from "@/type";
 import midtransClient from "midtrans-client"
-import { nanoid } from "nanoid";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 interface MidtransItem {
     id: string;
@@ -33,7 +33,9 @@ export async function POST(request: NextRequest) {
         if (!userId) {
             throw { status: 400, message: "User ID is required" }
         }
-        const order_id = "TRX-" + nanoid()
+
+        const order_id = generateOrderId(userId);
+
 
         const totalPrice = items.reduce((total: number, item: { DetailProduct: ProductType; quantity: number }) => {
             return total + (item.DetailProduct.price * item.quantity);
@@ -73,9 +75,6 @@ export async function POST(request: NextRequest) {
                 "postal_code": "12240",
                 "country_code": "IDN"
             },
-  "enabled_payments": [
-    "credit_card"
-  ],
         };
 
         const transaction = await snap.createTransaction(parameter)
@@ -97,24 +96,25 @@ export async function POST(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
     try {
         const body = await request.json();
-        const { orderId } = body;
+        const { orderId, status } = body;
 
         if (!orderId) {
-            throw { status: 400, message: "Order ID is required" }
+            return NextResponse.json({ message: "Order ID is required" }, { status: 400 });
         }
 
         const order = await OrderModel.findByOrderId(orderId);
+
+        if (status) {
+            await CartModel.deleteCart(order.userId);
+            return
+        }
+
         if (!order) {
-            throw { status: 404, message: "Order not found" }
+            return NextResponse.json({ message: "Order not found" }, { status: 404 });
         }
+
         if (order.status === "paid") {
-            throw { status: 400, message: "Order is already paid" }
-        }
-
-        const updatedOrder = await OrderModel.findByOrderId(orderId);
-
-        if (!updatedOrder) {
-            throw { status: 404, message: "Order not found" }
+            return NextResponse.json({ message: "Order is already paid" }, { status: 400 });
         }
 
         const serverKey = process.env.MIDTRANS_SERVER_KEY;
@@ -122,43 +122,30 @@ export async function PATCH(request: NextRequest) {
 
         const response = await fetch(`https://api.sandbox.midtrans.com/v2/${orderId}/status`, {
             method: 'GET',
-            headers: {
-                Authorization: `Basic ${base64ServerKey}`,
-            }
-        })
+            headers: { Authorization: `Basic ${base64ServerKey}` }
+        });
+
         const data = await response.json();
 
-        if (data.status_code !== "200" && data.transaction_status !== "capture") {
-            throw { status: 400, message: "Payment failed, please call our costumer support" }
+        if (data.status_code !== "200" || data.transaction_status !== "capture") {
+            return NextResponse.json({ message: "Payment failed, please contact customer support" }, { status: 400 });
         }
 
-        updatedOrder.status = "paid";
-        updatedOrder.paidDate = new Date();
-        updatedOrder.updatedAt = new Date();
         await OrderModel.collection().updateOne(
             { orderId: orderId },
-            { $set: updatedOrder }
+            {
+                $set: {
+                    status: "paid",
+                    paidDate: new Date(),
+                    updatedAt: new Date()
+                }
+            }
         );
 
-        return Response.json({ message: 'Success, payment received!' });
+        await CartModel.deleteCart(order.userId);
+
+        return NextResponse.json({ message: 'Success, payment received!', _id: order._id });
     } catch (error) {
         return errorHandler(error);
     }
 }
-
-export async function DELETE(request: NextRequest) {
-    try {
-
-        const body = await request.json();
-        const { userId } = body;
-        if (!userId) {
-            throw { status: 400, message: "User ID is required" }
-        }
-
-        await CartModel.deleteCart(userId);
-        return Response.json({ message: 'All orders deleted successfully' });
-    } catch (error) {
-        return errorHandler(error);
-    }
-}
-
