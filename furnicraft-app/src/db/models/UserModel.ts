@@ -5,7 +5,7 @@ import { signBcrypt, verifyBcrypt } from "@/helpers/bcryptjs";
 import { generateToken } from "@/helpers/jwt";
 import { cookies } from "next/headers";
 import { ObjectId } from "mongodb";
-//
+
 const NewUserSchema = z.object({
   username: z
     .string()

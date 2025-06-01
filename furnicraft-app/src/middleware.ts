@@ -31,6 +31,7 @@ export async function middleware(request: NextRequest) {
         return response
 
     } catch (error) {
+        console.log('Middleware Error:', error)
         return errorHandler(error)
     }
 
