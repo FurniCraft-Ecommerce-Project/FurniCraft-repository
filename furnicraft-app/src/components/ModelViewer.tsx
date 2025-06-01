@@ -1,25 +1,32 @@
 "use client";
+import Script from "next/script";
 
 import { useEffect, useState } from "react";
-
 export default function ModelViewer({imageUrl}: {imageUrl: string}) {
     const [isTrue, setIsTrue] = useState(false);
     const [srcImage, setSrcImage] = useState<string>("");
     useEffect(() => {
-      setSrcImage(imageUrl)
-      setIsTrue(true);
+          setSrcImage(imageUrl)
+        setIsTrue(true);
     }, []);
+    
     return (
-        isTrue && 
-        <model-viewer
-            src={srcImage}
-            alt="A 3D model of a chair"
-            auto-rotate
-            camera-controls
-            ar
-            style={{ width: '100%', height: '500px' }}
-        >
-        </model-viewer>
+        <>
+            <Script
+                type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+            />
+            {isTrue &&
+                <model-viewer
+                    src={"https://cors-anywhere.herokuapp.com/"+srcImage}
+                    alt="A 3D model of a chair"
+                    auto-rotate
+                    camera-controls
+                    ar
+                    style={{ width: '100%', height: '500px' }}
+                >
+                </model-viewer>}
+        </>
+
     );
 }
 

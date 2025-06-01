@@ -15,7 +15,7 @@ export async function POST(request : NextRequest) {
 
     if (isAdded) throw {status : 400, message : 'You already added this product to wishlist'}
   
-    const data = await WishlistModel.addWishlist({UserId, ProductId})
+    await WishlistModel.addWishlist({UserId, ProductId})
 
     return Response.json({message : 'Success Add to Wishlist', status : 201})
 
@@ -44,7 +44,7 @@ export async function DELETE(request : NextRequest) {
   try {
     const {wishlistId} = await request.json()
 
-    const response = await WishlistModel.delWishlist(wishlistId)
+    await WishlistModel.delWishlist(wishlistId)
 
     return Response.json({message : 'Deleted Success', status : 200})
 

@@ -1,5 +1,7 @@
 "use client";
 
+import errorHandler from "@/helpers/errorHandler";
+
 export default function Button3DModel({ imageUrl }: { imageUrl: string }) {
     const handleClick = async () => {
         try {
@@ -22,15 +24,9 @@ export default function Button3DModel({ imageUrl }: { imageUrl: string }) {
 
             window.location.href = `/products/3d-view?taskId=${initData.result}`;
 
-            // console.log('3D model generation initiated:', initData);
-            // return initData; // Contains taskId for further polling
-
         } catch (error) {
-            console.error('Error generating 3D model:', error);
-            throw error;
+            return errorHandler(error)
         }
-
-        // window.location.href = `/products/3d-view/${imageUrl}`;
     };
     return (
         <button className="btn btn-primary btn-outline" onClick={handleClick}>
