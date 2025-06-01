@@ -1,10 +1,10 @@
+import Button3DModel from "@/components/Button3DModel";
 import ButtonAddToCart from "@/components/ButtonAddToCart";
 import ButtonBuy from "@/components/ButtonBuy";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import formatRupiah from "@/helpers/formatRupiah";
 import { ProductType } from "@/type";
-import Link from "next/link";
 export default async function ProductsDetail({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
     const [nameProductParams, idProductParams] = slug.split('-')
@@ -45,12 +45,7 @@ export default async function ProductsDetail({ params }: { params: Promise<{ slu
                             <div className="flex gap-4 mt-6">
                                 <ButtonAddToCart product={data} page={"detail"} />
                                 <ButtonBuy />
-                                <Link href={`/products/3d-view/${data._id}`} className="flex items-center justify-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10 0l10 7.5-10 7.5L0 7.5 10 0zM10 3.553L2.562 7.5 10 11.447 17.438 7.5 10 3.553z" clipRule="evenodd" />
-                                    </svg>
-                                    See 3D Model
-                                </Link>
+                                <Button3DModel imageUrl={data.thumbnail} />
                             </div>
                         </div>
                     </div>

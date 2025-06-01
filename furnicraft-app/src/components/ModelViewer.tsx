@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from "react";
 
-export default function ModelViewer() {
+export default function ModelViewer({imageUrl}: {imageUrl: string}) {
     const [isTrue, setIsTrue] = useState(false);
+    const [srcImage, setSrcImage] = useState<string>("");
     useEffect(() => {
+      setSrcImage(imageUrl)
       setIsTrue(true);
     }, []);
     return (
         isTrue && 
         <model-viewer
-            src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+            src={srcImage}
             alt="A 3D model of a chair"
             auto-rotate
             camera-controls
