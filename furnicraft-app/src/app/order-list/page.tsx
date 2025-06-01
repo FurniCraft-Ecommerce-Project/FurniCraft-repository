@@ -29,7 +29,7 @@ export default function OrdersPage() {
 
         {orders.length === 0 || !Array.isArray(orders) ? (
           <div className="bg-base-100 shadow-lg rounded-lg p-8 text-center">
-            <p className="text-lg">You don't have any orders yet.</p>
+            <p className="text-lg">You dont have any orders yet.</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -54,7 +54,7 @@ export default function OrdersPage() {
                       </span>
                     </div>
                     {order.status.toLowerCase() === "pending" && (
-                      <ButtonRepayment token={order.token} userId={order.userId} />
+                      <ButtonRepayment token={order.token} />
                     )}
                   </div>
 

@@ -1,3 +1,4 @@
+import Button3DModel from "@/components/Button3DModel";
 import ButtonAddToCart from "@/components/ButtonAddToCart";
 import ButtonBuy from "@/components/ButtonBuy";
 import Footer from "@/components/Footer";
@@ -44,6 +45,7 @@ export default async function ProductsDetail({ params }: { params: Promise<{ slu
                             <div className="flex gap-4 mt-6">
                                 <ButtonAddToCart product={data} page={"detail"} />
                                 <ButtonBuy />
+                                <Button3DModel imageUrl={data.thumbnail} />
                             </div>
                         </div>
                     </div>

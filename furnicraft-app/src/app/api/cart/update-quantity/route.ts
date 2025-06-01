@@ -1,21 +1,22 @@
 import CartModel from "@/db/models/CartModel";
+import errorHandler from "@/helpers/errorHandler";
 
 export async function PATCH(request: Request) {
     const { productId, action } = await request.json();
     const UserId = request.headers.get('x-user-id')
 
     if (!UserId) {
-        return Response.json({ error: "User ID is required" }, { status: 401 });
+        throw ({ message: "User ID is required", status: 401 });
     }
 
     if (!["increment", "decrement"].includes(action)) {
-        return Response.json({ error: "Invalid action" }, { status: 400 });
+        throw ({ message: "Invalid action", status: 400 });
     }
 
     const cart = await CartModel.getCartByUserIdProductId(UserId, productId);
     
     if (!cart) {
-        return Response.json({ error: "Cart not found" }, { status: 404 });
+        throw ({ message: "Cart not found", status: 404 });
     }
     try {
         if (action === "increment") {
@@ -29,6 +30,6 @@ export async function PATCH(request: Request) {
         }
         return Response.json({ message: "Quantity updated successfully" });
     } catch (error) {
-        return Response.json({ error: "Failed to update quantity" }, { status: 500 });
+        return errorHandler(error)
     }
 }
