@@ -1,16 +1,16 @@
 'use client'
 import { ProductType } from "@/type";
 import { IoMdHeartEmpty } from "@react-icons/all-files/io/IoMdHeartEmpty";
-export default function ButtonAddToWishlist ({product} : {product : ProductType}) {
+export default function ButtonAddToWishlist({ product }: { product: ProductType }) {
 
     const handleOnClick = async () => {
         try {
-            const response = await fetch("http://localhost:3000/api/wishlist", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ProductId: product._id}),
+                body: JSON.stringify({ ProductId: product._id }),
             });
             if (!response.ok) {
                 throw (await response.json())

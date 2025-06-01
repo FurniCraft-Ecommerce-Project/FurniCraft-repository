@@ -35,7 +35,7 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3000/api/register", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -201,11 +201,10 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={isLoading || success}
-              className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
-                isLoading || success
+              className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${isLoading || success
                   ? "bg-[#666666] cursor-not-allowed"
                   : "bg-[#333333] hover:bg-[#262626]"
-              } focus:outline-none transition-colors duration-200`}
+                } focus:outline-none transition-colors duration-200`}
             >
               {isLoading ? (
                 <>

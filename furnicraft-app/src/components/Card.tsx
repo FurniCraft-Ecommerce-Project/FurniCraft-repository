@@ -18,7 +18,7 @@ export default function Card ({product} : {product : ProductType}) {
               <span className="text-sm font-semibold bg-gray-100 px-2 py-1 rounded-full">{product.description}</span>
               <div className="text-right space-x-2">
                 <ButtonAddToWishlist product={product} />
-                <ButtonAddToCart product={product} />
+                <ButtonAddToCart product={product} page={"products"} />
               </div>
             </div>
         </>

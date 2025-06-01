@@ -1,28 +1,35 @@
 'use client'
-export default function ButtonDeleteCart ({orderId} : {orderId : string}) {
 
-    const handleOnClick = async () => {
+import errorHandler from "@/helpers/errorHandler";
+import { MouseEventHandler } from "react";
+import toast from "react-hot-toast";
+
+export default function ButtonDeleteCart({ orderId }: { orderId: string }) {
+
+    const handleOnClick: MouseEventHandler<HTMLButtonElement> = async (e) => {
         try {
-            const response = await fetch("http://localhost:3000/api/cart", {
+            e.preventDefault();
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({orderId}),
+                body: JSON.stringify({ orderId }),
             });
             if (!response.ok) {
-                throw (await response.json())
+                throw await response.json()
             }
+            toast.success("1 product has been deleted!");
 
-            window.location.reload()
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
 
         } catch (error) {
-            alert((error as Error).message)
+            errorHandler(error)
         }
     }
     return (
-        <>
-            <button className="btn btn-outline btn-error" onClick={handleOnClick}>Delete</button>
-        </>
+        <button className="btn btn-outline btn-error" onClick={handleOnClick}>Delete</button>
     )
 }

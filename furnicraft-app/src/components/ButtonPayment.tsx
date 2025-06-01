@@ -1,11 +1,11 @@
 "use client";
 
 import { CartType } from "@/type";
+import { redirect } from "next/navigation";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
-export default function ButtonPayment({data}: {data: CartType[]}) {
-
-    console.log("data", data);
+export default function ButtonPayment({ data }: { data: CartType[] }) {
 
     useEffect(() => {
 
@@ -25,46 +25,34 @@ export default function ButtonPayment({data}: {data: CartType[]}) {
     }, []);
 
     const handlePayment = async () => {
-        
-        const user = {
-            "id": "683858bc8192fc57db299c85",
-            "name": "John Doe",
-            "email": "john@mail.com"
+        if (data.length === 0) {
+            toast.error("Your cart is empty!");
+            return redirect('/cart');
         }
-
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
             method: 'POST',
             body: JSON.stringify({
-                userId: user,
                 items: data
             })
         });
-        const requestData = await response.json();
+        const { transactionToken } = await response.json();
 
-        window.snap.pay(requestData.transactionToken, {
-            onSuccess: async function (result) {
+        window.snap.pay(transactionToken, {
+            onSuccess: async function (result: any) {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'PATCH',
-                    body: JSON.stringify({
-                        orderId: result.order_id
-                    })
-                });
-                
-                await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
-                    method: 'DELETE',
-                    body: JSON.stringify({
-                        userId: data[0].UserId
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderId: result.order_id })
                 });
 
-                const { message } = await response.json();
-                window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order/thank-you/${result.order_id}`;
-            },
+                const { message, _id } = await response.json();
+                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order-list/thank-you/${_id}`;
+            }
         });
     }
 
     return (
-        <button onClick={handlePayment} className="mt-8 px-6 py-3 bg-green-600 text-white rounded-full shadow hover:bg-green-700 transition">
+        <button onClick={handlePayment} className="mt-8 px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition" style={{ cursor: "pointer" }}>
             Proceed to Payment
         </button>
     )
