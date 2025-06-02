@@ -65,6 +65,21 @@ class ProductModel {
     stock: number;
     category: string;
   }) {
+    //buat validasi untuk memastikan semua field tidak kosong
+    if (
+      !name ||
+      !description ||
+      !price ||
+      !thumbnail ||
+      stock === undefined ||
+      !category
+    ) {
+      throw {
+        status: 400,
+        message: "All fields are required",
+      };
+    }
+
     return await this.collection().insertOne({
       name,
       description,
@@ -73,6 +88,68 @@ class ProductModel {
       stock,
       category,
     });
+  }
+
+  //buat untuk update produk
+  static async updateProduct({
+    productId,
+    name,
+    description,
+    price,
+    thumbnail,
+    stock,
+    category,
+  }: {
+    productId: string;
+    name: string;
+    description: string;
+    price: number;
+    thumbnail: string;
+    stock: number;
+    category: string;
+  }) {
+    // console.log(productId)
+    //buat validasi untuk memastikan semua field tidak kosong
+    if (
+      !productId ||
+      !name ||
+      !description ||
+      !price ||
+      !thumbnail ||
+      stock === undefined ||
+      !category
+    ) {
+      throw {
+        status: 400,
+        message: "All fields are required",
+      };
+    }
+
+    //1. cari dulu produk berdasarkan id
+    const product = await this.getProductById(productId);
+
+    //2. jika produk tidak ditemukan, lempar error
+    if (!product) {
+      throw {
+        status: 404,
+        message: "Product not found",
+      };
+    }
+
+    //3. update produk
+    return this.collection().updateOne(
+      { _id: new ObjectId(productId) },
+      {
+        $set: {
+          name,
+          description,
+          price,
+          thumbnail,
+          stock,
+          category,
+        },
+      }
+    );
   }
 
   static async delProduct(id: string) {
