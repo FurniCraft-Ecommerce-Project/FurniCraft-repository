@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
             name: item.DetailProduct.name
         }));
 
-        let parameter = {
+        const parameter = {
             "transaction_details": {
                 "order_id": order_id,
                 "gross_amount": totalPrice
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
         };
 
         const transaction = await snap.createTransaction(parameter)
-        let transactionToken = transaction.token;
+        const transactionToken = transaction.token;
 
         await OrderModel.create({
             userId: userId,

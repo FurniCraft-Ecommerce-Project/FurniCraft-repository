@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.1.0",
     "@react-icons/all-files": "^4.1.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
@@ -26,6 +27,7 @@
     "react-hot-toast": "^2.5.2",
     "react-infinite-scroll-component": "^6.1.0",
     "react-toastify": "^11.0.5",
+    "three": "^0.177.0",
     "use-debounce": "^10.0.4",
     "zod": "^3.25.30"
   },
