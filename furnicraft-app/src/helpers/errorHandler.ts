@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { ZodError } from "zod";
 
 export default function errorHandler(payload: unknown) {
+  console.log("Error Handler:", payload);
   const error = payload as CustomErrorType;
   let message = error.message || "Internal Server Error";
   let status = error.status || 500;
@@ -12,6 +13,5 @@ export default function errorHandler(payload: unknown) {
     status = 400;
   }
 
-  // toast.error(message)
   return Response.json({ message: message }, { status: status });
 }

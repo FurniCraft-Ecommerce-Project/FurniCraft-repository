@@ -47,6 +47,7 @@ export const config = {
         '/api/order/:path*',
         '/api/ai/embedding/:path*',
         '/furni-place/:path*',
-        '/api/upload/image/:path*'
+        '/api/upload/image/:path*',
+        '/order-list/:path*',
     ],
 }

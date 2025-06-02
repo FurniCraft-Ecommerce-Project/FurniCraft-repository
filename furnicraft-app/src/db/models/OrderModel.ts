@@ -34,7 +34,7 @@ export default class OrderModel {
             updatedAt: new Date()
         })
 
-        return "Order created successfully"
+        return result
     }
 
     static async findByOrderId(id: string) {

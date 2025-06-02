@@ -1,9 +1,9 @@
 "use client";
 
-import { CartType } from "@/type";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
-export default function ButtonRepayment({ token, userId }: { token: string, userId: string }) {
+export default function ButtonRepayment({ token }: { token: string }) {
 
     useEffect(() => {
 
@@ -23,9 +23,8 @@ export default function ButtonRepayment({ token, userId }: { token: string, user
     }, []);
 
     const handlePayment = async () => {
-
         window.snap.pay(String(token), {
-            onSuccess: async function (result) {
+            onSuccess: async function (result: any) {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'PATCH',
                     body: JSON.stringify({
@@ -33,15 +32,9 @@ export default function ButtonRepayment({ token, userId }: { token: string, user
                     })
                 });
 
-                await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
-                    method: 'DELETE',
-                    body: JSON.stringify({
-                        userId: userId
-                    })
-                });
-
                 const { message } = await response.json();
-                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order/thank-you/${result.order_id}`;
+                toast.success(message);
+                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order-list/thank-you/${result.order_id}`;
             }
         });
     }

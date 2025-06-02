@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { OrderType } from "@/type";
 import { ShoppingBag } from "lucide-react";
 import MyModal from "@/components/ModalProducts";
-// import { BsThreeDotsVertical } from "react-icons/bs";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<OrderType[]>([])
@@ -30,12 +29,11 @@ export default function OrdersPage() {
 
         {orders.length === 0 || !Array.isArray(orders) ? (
           <div className="bg-base-100 shadow-lg rounded-lg p-8 text-center">
-            <p className="text-lg">You don't have any orders yet.</p>
+            <p className="text-lg">You dont have any orders yet.</p>
           </div>
         ) : (
           <div className="space-y-6">
             {orders.map((order, index) => {
-              // Calculate total from items
               const total = order.items.reduce((sum, item) => sum + item.subtotal, 0);
               const formattedDate = new Date(order.createdAt).toLocaleDateString('id-ID', {
                 day: 'numeric',
@@ -56,7 +54,7 @@ export default function OrdersPage() {
                       </span>
                     </div>
                     {order.status.toLowerCase() === "pending" && (
-                      <ButtonRepayment token={order.token} userId={order.userId} />
+                      <ButtonRepayment token={order.token} />
                     )}
                   </div>
 
@@ -84,7 +82,7 @@ export default function OrdersPage() {
                           <div>
                             <h3 className="font-medium">{order.items[0].name}</h3>
                             <p className="text-sm text-gray-500">
-                              {order.items[0].quantity} item × {formatRupiah(order.items[0].price)}
+                              {order.items[0].quantity} item x {formatRupiah(order.items[0].price)}
                             </p>
                             {order.items.length > 1 && (
                               <MyModal order={order} />
