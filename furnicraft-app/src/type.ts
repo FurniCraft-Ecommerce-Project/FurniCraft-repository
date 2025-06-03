@@ -19,7 +19,7 @@ export type ProductType = {
   thumbnail: string;
   stock: number;
   category: string;
-  image3dUrl: string;
+  image3dUrl?: string;
 };
 
 export interface OrderType {
