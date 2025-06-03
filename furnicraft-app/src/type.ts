@@ -58,3 +58,12 @@ export type NewUser = {
   avatar: string;
   role: string;
 };
+
+export interface MidtransItem {
+    id: string;
+    price: number;
+    quantity: number;
+    name: string;
+}
+
+export type MidtransItems = MidtransItem[];

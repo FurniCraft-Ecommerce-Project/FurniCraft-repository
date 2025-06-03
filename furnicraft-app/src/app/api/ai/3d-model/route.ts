@@ -1,4 +1,5 @@
 import errorHandler from '@/helpers/errorHandler';
+import waitForModel from '@/helpers/waitForModel';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -47,16 +48,8 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const response = await fetch(`https://api.meshy.ai/openapi/v1/image-to-3d/${taskId}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${process.env.MESHY_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const data = await response.json();
-    return NextResponse.json(data, { status: response.status });
+     const data = await waitForModel(taskId);
+    return NextResponse.json(data);
   } catch (error) {
     return errorHandler(error);
   }

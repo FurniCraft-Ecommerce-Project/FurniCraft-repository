@@ -37,6 +37,7 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
         });
         const { transactionToken } = await response.json();
 
+        // @ts-ignore
         window.snap.pay(transactionToken, {
             onSuccess: async function (result: any) {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
@@ -44,9 +45,16 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ orderId: result.order_id })
                 });
-
+                if (!response.ok) {
+                    const { message } = await response.json();
+                    toast.error(message);
+                    return;
+                }
+                await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
+                    method: 'DELETE'
+                });
                 const { message, _id } = await response.json();
-                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order-list/thank-you/${_id}`;
+                
             }
         });
     }

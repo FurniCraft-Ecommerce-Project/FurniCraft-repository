@@ -11,7 +11,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 p-8">
       <ButtonBack/>
-      <h1 className="text-3xl font-bold mb-4">3D Model Viewer</h1>
+      <h1 className="text-3xl font-bold mb-4">3D Model Room</h1>
       <p className="mb-6">Product Name: {data?.name ?? 'Unknown'}</p>
       <div className="flex justify-center">
         <ModelViewer imageUrl={data.image3dUrl}/>
