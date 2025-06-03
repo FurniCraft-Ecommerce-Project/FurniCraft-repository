@@ -114,6 +114,8 @@ export async function POST(request: NextRequest) {
             - How each piece contributes to the overall room harmony
 
             please convert to bahasa indonesia
+            If the image does not depict a room or a specific place, please respond with "maaf"
+            If there's any advertisement please remove
         `
 
         let {textEmbed, resOpenAi} = await textEmbeddingFunctOpenAi(base64Image,question,url)
