@@ -103,9 +103,10 @@ export default function ImageUploadPage() {
 
 
   const deleteImage = (publicId: string) => {
-    setUploadedImages(prev => 
-      prev.filter(img => img.public_id !== publicId)
-    );
+    // setUploadedImages(prev => 
+    //   prev.filter(img => img.public_id !== publicId)
+    // );
+    setUploadedImages([])
     setProducts([])
     setTextResOpenAi("")
   };
