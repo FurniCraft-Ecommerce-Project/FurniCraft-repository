@@ -51,7 +51,6 @@ class ProductModel {
         return product.stock
     }
 
-    // buat function yang menerima array of product IDs dan quantity beli lalu mengecek jumlah stok untuk setiap produk, jika stok tidak mencukupi, lempar error
     static async checkStockByIds(ids: string[], quantities: number[]) {
         if (ids.length !== quantities.length) {
             throw { status: 400, message: "Product IDs and quantities must have the same length" }
@@ -67,6 +66,19 @@ class ProductModel {
         }
 
         return true
+    }
+
+    static async updateProductById(id: string, image3dUrl: string) {
+        const result = await this.collection().updateOne(
+            { _id: new ObjectId(id) },
+            { $set: { image3dUrl: image3dUrl } }
+        )
+
+        if (result.modifiedCount === 0) {
+            throw { status: 404, message: "Product not found or image URL not updated" }
+        }
+
+        return result
     }
 
 }

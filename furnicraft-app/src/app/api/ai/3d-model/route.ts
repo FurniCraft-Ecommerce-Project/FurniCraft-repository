@@ -1,4 +1,3 @@
-// app/api/ai/3d-model/route.ts
 import errorHandler from '@/helpers/errorHandler';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -26,6 +25,11 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify(payload),
     });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw { message: errorData.message || 'Failed to initiate 3D model generation', status: response.status };
+    }
 
     const data = await response.json();
     return NextResponse.json(data, { status: response.status });

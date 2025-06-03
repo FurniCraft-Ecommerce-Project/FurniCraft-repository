@@ -22,7 +22,6 @@ export default function ButtonAddToCart({ product, page }: { product: ProductTyp
             const data = await response.json();
             toast.success(data.message)
 
-            return
         } catch (error) {
             // toast.error((error as Error).message)
             errorHandler(error as Error);
@@ -31,11 +30,11 @@ export default function ButtonAddToCart({ product, page }: { product: ProductTyp
 
     return (
         page === 'detail' ?
-            <button className="flex-1 border border-gray py-2 rounded-full hover:bg-gray-500 hover:text-white" onClick={handleOnClick}>
+            <button className="flex-1 border border-gray py-2 rounded-full hover:bg-gray-500 hover:text-white" onClick={handleOnClick} style={{cursor: "pointer"}}>
                 Add to Cart
             </button>
             :
-            <button className="cursor-pointer" onClick={handleOnClick}>
+            <button className="cursor-pointer" onClick={handleOnClick} style={{cursor: "pointer"}}>
                 <IoCartOutline className="h-7 w-7" />
             </button>
     )

@@ -1,5 +1,4 @@
 import { CustomErrorType } from "@/type";
-import toast from "react-hot-toast";
 import { ZodError } from "zod";
 
 export default function errorHandler(payload: unknown) {

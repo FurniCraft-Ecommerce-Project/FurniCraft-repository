@@ -45,7 +45,7 @@ export default async function ProductsDetail({ params }: { params: Promise<{ slu
                             <div className="flex gap-4 mt-6">
                                 <ButtonAddToCart product={data} page={"detail"} />
                                 <ButtonBuy />
-                                <Button3DModel imageUrl={data.thumbnail} />
+                                <Button3DModel imageUrl={data.thumbnail} id={data._id} />
                             </div>
                         </div>
                     </div>

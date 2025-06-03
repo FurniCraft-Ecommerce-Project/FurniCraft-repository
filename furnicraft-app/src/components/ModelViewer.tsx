@@ -2,14 +2,14 @@
 import Script from "next/script";
 
 import { useEffect, useState } from "react";
-export default function ModelViewer({imageUrl}: {imageUrl: string}) {
+export default function ModelViewer({ imageUrl }: { imageUrl: string }) {
     const [isTrue, setIsTrue] = useState(false);
     const [srcImage, setSrcImage] = useState<string>("");
     useEffect(() => {
-          setSrcImage(imageUrl)
+        setSrcImage(imageUrl)
         setIsTrue(true);
     }, []);
-    
+
     return (
         <>
             <Script
@@ -17,7 +17,7 @@ export default function ModelViewer({imageUrl}: {imageUrl: string}) {
             />
             {isTrue &&
                 <model-viewer
-                    src={"https://cors-anywhere.herokuapp.com/"+srcImage}
+                    src={srcImage}
                     alt="A 3D model of a chair"
                     auto-rotate
                     camera-controls
