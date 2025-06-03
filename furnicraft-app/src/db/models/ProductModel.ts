@@ -198,8 +198,22 @@ class ProductModel {
       }
     }
 
-    return true;
-  }
+        return true
+    }
+
+    static async updateProductById(id: string, image3dUrl: string) {
+        const result = await this.collection().updateOne(
+            { _id: new ObjectId(id) },
+            { $set: { image3dUrl: image3dUrl } }
+        )
+
+        if (result.modifiedCount === 0) {
+            throw { status: 404, message: "Product not found or image URL not updated" }
+        }
+
+        return result
+    }
+
 }
 
 export default ProductModel;
