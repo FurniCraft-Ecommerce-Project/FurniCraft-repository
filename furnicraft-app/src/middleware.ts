@@ -46,9 +46,10 @@ export const config = {
         '/api/payment/:path*',
         '/api/order/:path*',
         '/api/ai/embedding/:path*',
+        '/api/ai/combine-image/:path*',
         '/furni-place/:path*',
         '/api/upload/image/:path*',
-        '/order-list/:path*',
+        '/order-list/:path*'
         // '/api/ai/3d-model/:path*',
         // '/products/3d-view/:path*'
     ],
