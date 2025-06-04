@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent, useRef } from "react";
 import { ProductType } from "@/type";
 // import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
@@ -36,6 +36,10 @@ export default function AdminPage() {
     stock: 0,
     category: "",
   });
+
+  // State untuk upload file
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch produk dengan pagination
   const fetchProducts = async () => {
@@ -109,8 +113,72 @@ export default function AdminPage() {
 
     setFormData({
       ...formData,
-      [name]: name === "price" || name === "stock" ? parseFloat(value) : value,
+      [name]: name === "price" || name === "stock" ? Number(value) : value,
     });
+  };
+
+  // Handler untuk upload file
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error('Tipe file tidak valid. Hanya JPEG, PNG, WebP, dan GIF yang diperbolehkan.');
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      toast.error('Ukuran file terlalu besar. Maksimum 5MB.');
+      return;
+    }
+
+    setIsUploading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch('/api/upload/image', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Gagal mengunggah gambar');
+      }
+
+      const data = await response.json();
+
+      // Update form data with the uploaded image URL
+      setFormData(prev => ({
+        ...prev,
+        thumbnail: data.url
+      }));
+
+      toast.success('Gambar berhasil diunggah');
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      toast.error('Gagal mengunggah gambar');
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  // Handle thumbnail removal
+  const handleRemoveThumbnail = () => {
+    setFormData(prev => ({
+      ...prev,
+      thumbnail: ''
+    }));
+
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   // Handler untuk membuka modal tambah produk
@@ -147,11 +215,9 @@ export default function AdminPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validasi URL
-    try {
-      new URL(formData.thumbnail);
-    } catch (error) {
-      toast.error("URL gambar tidak valid. Harap masukkan URL yang valid.");
+    // Validasi URL tidak lagi diperlukan karena kita mendapatkan URL dari Cloudinary
+    if (!formData.thumbnail) {
+      toast.error("Harap unggah gambar produk terlebih dahulu.");
       return;
     }
 
@@ -163,13 +229,13 @@ export default function AdminPage() {
       const submitData =
         modalMode === "add"
           ? {
-              name: formData.name,
-              description: formData.description,
-              price: formData.price,
-              thumbnail: formData.thumbnail,
-              stock: formData.stock,
-              category: formData.category,
-            }
+            name: formData.name,
+            description: formData.description,
+            price: formData.price,
+            thumbnail: formData.thumbnail,
+            stock: formData.stock,
+            category: formData.category,
+          }
           : formData;
 
       const response = await fetch(url, {
@@ -594,7 +660,6 @@ export default function AdminPage() {
                       value={formData.price}
                       onChange={handleChange}
                       min="0"
-                      step="1000"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4A86A]"
                       placeholder="Harga dalam Rupiah"
                     />
@@ -648,21 +713,29 @@ export default function AdminPage() {
                       htmlFor="thumbnail"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      URL Gambar
+                      Gambar Produk
                     </label>
-                    <input
-                      type="url"
-                      id="thumbnail"
-                      name="thumbnail"
-                      value={formData.thumbnail}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4A86A]"
-                      placeholder="URL gambar produk"
-                    />
+                    <div className="flex flex-col space-y-2">
+                      <input
+                        type="file"
+                        id="thumbnail"
+                        ref={fileInputRef}
+                        accept="image/jpeg,image/png,image/webp,image/gif"
+                        onChange={handleFileUpload}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4A86A]"
+                        disabled={isUploading}
+                      />
+                      {isUploading && (
+                        <div className="flex items-center space-x-2 mt-2">
+                          <div className="animate-spin rounded-full h-4 w-4 border-2 border-[#D4A86A] border-t-transparent"></div>
+                          <span className="text-sm text-gray-500">Mengunggah gambar...</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {formData.thumbnail && (
-                    <div className="col-span-2 flex justify-center">
+                    <div className="col-span-2 flex flex-col items-center space-y-2">
                       <div className="w-40 h-40">
                         <img
                           src={formData.thumbnail}
@@ -675,6 +748,13 @@ export default function AdminPage() {
                           }}
                         />
                       </div>
+                      <button
+                        type="button"
+                        onClick={handleRemoveThumbnail}
+                        className="text-sm text-red-600 hover:text-red-800"
+                      >
+                        Hapus Gambar
+                      </button>
                     </div>
                   )}
                 </div>
