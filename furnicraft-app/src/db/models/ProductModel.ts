@@ -57,6 +57,7 @@ class ProductModel {
     thumbnail,
     stock,
     category,
+    embedding,
   }: {
     name: string;
     description: string;
@@ -64,6 +65,7 @@ class ProductModel {
     thumbnail: string;
     stock: number;
     category: string;
+    embedding: number[];
   }) {
     //buat validasi untuk memastikan semua field tidak kosong
     if (
@@ -72,13 +74,16 @@ class ProductModel {
       !price ||
       !thumbnail ||
       stock === undefined ||
-      !category
+      !category ||
+      !embedding
     ) {
       throw {
         status: 400,
         message: "All fields are required",
       };
     }
+
+    // console.log("Embedding:", embedding);
 
     return await this.collection().insertOne({
       name,
@@ -87,6 +92,7 @@ class ProductModel {
       thumbnail,
       stock,
       category,
+      embedding: Array.from(embedding), // Convert to array if needed
     });
   }
 
@@ -99,6 +105,7 @@ class ProductModel {
     thumbnail,
     stock,
     category,
+    embedding,
   }: {
     productId: string;
     name: string;
@@ -107,6 +114,7 @@ class ProductModel {
     thumbnail: string;
     stock: number;
     category: string;
+    embedding: number[];
   }) {
     // console.log(productId)
     //buat validasi untuk memastikan semua field tidak kosong
@@ -117,7 +125,8 @@ class ProductModel {
       !price ||
       !thumbnail ||
       stock === undefined ||
-      !category
+      !category ||
+      !embedding
     ) {
       throw {
         status: 400,
@@ -147,6 +156,7 @@ class ProductModel {
           thumbnail,
           stock,
           category,
+          embedding: Array.from(embedding),
         },
       }
     );
@@ -198,22 +208,24 @@ class ProductModel {
       }
     }
 
-        return true
+    return true;
+  }
+
+  static async updateProductById(id: string, image3dUrl: string) {
+    const result = await this.collection().updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { image3dUrl: image3dUrl } }
+    );
+
+    if (result.modifiedCount === 0) {
+      throw {
+        status: 404,
+        message: "Product not found or image URL not updated",
+      };
     }
 
-    static async updateProductById(id: string, image3dUrl: string) {
-        const result = await this.collection().updateOne(
-            { _id: new ObjectId(id) },
-            { $set: { image3dUrl: image3dUrl } }
-        )
-
-        if (result.modifiedCount === 0) {
-            throw { status: 404, message: "Product not found or image URL not updated" }
-        }
-
-        return result
-    }
-
+    return result;
+  }
 }
 
 export default ProductModel;
