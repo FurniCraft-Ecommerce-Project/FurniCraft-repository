@@ -1,6 +1,8 @@
 'use client'
+import errorHandler from "@/helpers/errorHandler";
 import { ProductType } from "@/type";
 import { IoMdHeartEmpty } from "@react-icons/all-files/io/IoMdHeartEmpty";
+import toast from "react-hot-toast";
 export default function ButtonAddToWishlist({ product }: { product: ProductType }) {
 
     const handleOnClick = async () => {
@@ -19,7 +21,8 @@ export default function ButtonAddToWishlist({ product }: { product: ProductType 
             return alert((await response.json()).message)
 
         } catch (error) {
-            alert((error as Error).message)
+            toast.error((error as Error).message)
+            return errorHandler(error as Error);
         }
     }
 

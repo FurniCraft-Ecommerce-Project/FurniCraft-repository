@@ -23,7 +23,7 @@ export default function ButtonAddToCart({ product, page }: { product: ProductTyp
             toast.success(data.message)
 
         } catch (error) {
-            // toast.error((error as Error).message)
+            toast.error((error as Error).message)
             errorHandler(error as Error);
         }
     }

@@ -62,7 +62,18 @@ export default class OrderModel {
     }
 
     const orders = await this.collection()
-      .find({ userId: new ObjectId(userId) })
+      .aggregate([
+        {
+          $match: {
+            userId: new ObjectId("6839b64e8ad90b7498b257b1"),
+          },
+        },
+        {
+          $sort: {
+            updatedAt: -1,
+          },
+        },
+      ])
       .toArray();
 
     if (orders.length === 0) {
