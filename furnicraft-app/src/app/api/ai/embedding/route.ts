@@ -114,6 +114,8 @@ export async function POST(request: NextRequest) {
             - How each piece contributes to the overall room harmony
 
             please convert to bahasa indonesia
+            If the image does not depict a room or a specific place, please respond with "maaf"
+            If there's any advertisement please remove
         `
 
         let {textEmbed, resOpenAi} = await textEmbeddingFunctOpenAi(base64Image,question,url)
@@ -140,7 +142,14 @@ export async function POST(request: NextRequest) {
             })
         })
 
-        const responseFinal = resSimilarity.sort((a, b) => b.sim - a.sim).slice(0,10)
+        let responseFinal = resSimilarity.sort((a, b) => b.sim - a.sim).slice(0,10)
+
+        const isValidImage = resOpenAi.toLowerCase().includes("maaf")
+
+        if (isValidImage) {
+            responseFinal = []
+            resOpenAi = 'Maaf, saya tidak dapat memberikan analisis atau rekomendasi terkait gambar tersebut. Silahkan upload gambar kembali.'
+        }
 
         return NextResponse.json({
             arrProductsRec : responseFinal,
@@ -149,8 +158,6 @@ export async function POST(request: NextRequest) {
             
 
     } catch (error) {
-        console.log(error);
-        
         return errorHandler(error)
     }
 }

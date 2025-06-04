@@ -25,7 +25,7 @@ export default function ImageUploadPage() {
   const [dragActive, setDragActive] = useState(false);
 
   //! new for data products
-  const [products, setProducts] = useState<{_id:string, sim:number, name : string, thumbnail : string, price : number, description : string, stock:number, category : string}[]>([])
+  const [products, setProducts] = useState<{_id:string, sim:number, name : string, thumbnail : string, price : number, description : string, stock:number, category : string, image3dUrl:string}[]>([])
   const [textResOpenAi, setTextResOpenAi] = useState("")
 
   const handleFileSelect = (files: FileList | null) => {
@@ -103,9 +103,10 @@ export default function ImageUploadPage() {
 
 
   const deleteImage = (publicId: string) => {
-    setUploadedImages(prev => 
-      prev.filter(img => img.public_id !== publicId)
-    );
+    // setUploadedImages(prev => 
+    //   prev.filter(img => img.public_id !== publicId)
+    // );
+    setUploadedImages([])
     setProducts([])
     setTextResOpenAi("")
   };
@@ -239,7 +240,7 @@ export default function ImageUploadPage() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
               { 
-                (products && 
+                (products &&
                   products?.map((el,idx) => {
                     return <Card key={idx} product={el}/>
                   })
