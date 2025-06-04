@@ -32,6 +32,7 @@ export interface OrderType {
   updatedAt: Date;
   token: string;
   items: OrderDetail[];
+  deliveryStatus?: string;
 }
 
 export interface OrderDetail {
@@ -60,10 +61,10 @@ export type NewUser = {
 };
 
 export interface MidtransItem {
-    id: string;
-    price: number;
-    quantity: number;
-    name: string;
+  id: string;
+  price: number;
+  quantity: number;
+  name: string;
 }
 
 export type MidtransItems = MidtransItem[];
