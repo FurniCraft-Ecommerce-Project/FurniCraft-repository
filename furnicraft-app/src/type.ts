@@ -31,7 +31,6 @@ export interface OrderType {
   createdAt: Date;
   updatedAt: Date;
   token: string;
-  deliveryStatus: string;
   items: OrderDetail[];
   deliveryStatus?: string;
 }
