@@ -113,12 +113,12 @@ export async function POST(request: NextRequest) {
             - Budget-conscious options when possible
             - How each piece contributes to the overall room harmony
 
-            please convert to bahasa indonesia
             If the image does not depict a room or a specific place, please respond with "maaf"
             If there's any advertisement please remove
         `
 
         let {textEmbed, resOpenAi} = await textEmbeddingFunctOpenAi(base64Image,question,url)
+        
         textEmbed = l2Normalize(textEmbed)
         // textEmbed = adjustDimensions(textEmbed) // to adjust dimensions to 512, before 384 => db products for embeddingDescriptionImage
         textEmbed = adjustDimensions(textEmbed,384) // to compress dimensions to 384, before 512 => db products for embeddingDescription
