@@ -2,10 +2,14 @@
 
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
-import Card from '@/components/Card';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ReactMarkdown from "react-markdown";
+import formatRupiah from '@/helpers/formatRupiah';
+import Link from 'next/link';
+import ButtonAddToWishlist from '@/components/ButtonAddToWishlist';
+import ButtonAddToCart from '@/components/ButtonAddToCart';
+import { IoMdInfinite } from '@react-icons/all-files/io/IoMdInfinite';
 
 interface UploadResponse {
   success: boolean;
@@ -27,6 +31,8 @@ export default function ImageUploadPage() {
   //! new for data products
   const [products, setProducts] = useState<{_id:string, sim:number, name : string, thumbnail : string, price : number, description : string, stock:number, category : string, image3dUrl:string}[]>([])
   const [textResOpenAi, setTextResOpenAi] = useState("")
+  const [resCombineImg,setResCombineImg] = useState("")
+  const [loadCombine, setLoadCombine] = useState(false)
 
   const handleFileSelect = (files: FileList | null) => {
     if (!files || files.length === 0) return;
@@ -44,7 +50,7 @@ export default function ImageUploadPage() {
       formData.append('file', file);
 
       // Tambahkan parameter base64 jika diperlukan
-      const url = 'http://localhost:3000/api/upload/image?base64=true'
+      const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/upload/image?base64=true`
 
       const response = await fetch(url, {
         method: 'POST',
@@ -57,7 +63,7 @@ export default function ImageUploadPage() {
         setUploadedImages(prev => [...prev, result]);
 
         //! TO GET EMBEDDING
-        const response = await fetch("http://localhost:3000/api/ai/embedding", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/ai/embedding`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -103,13 +109,28 @@ export default function ImageUploadPage() {
 
 
   const deleteImage = (publicId: string) => {
-    // setUploadedImages(prev => 
-    //   prev.filter(img => img.public_id !== publicId)
-    // );
     setUploadedImages([])
     setProducts([])
     setTextResOpenAi("")
+    setResCombineImg("")
   };
+
+  const handleOnClickCombine = async (roomImageUrl: string) => {
+    setLoadCombine(true)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/ai/combine-image`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        urlImageFurniture: uploadedImages[0].url,
+        urlImageRoom : roomImageUrl
+      }),
+    });
+    const resAiCombineImage = await response.json()
+    setResCombineImg(resAiCombineImage)
+    setLoadCombine(false)
+  }
 
   return (
     <>
@@ -168,12 +189,20 @@ export default function ImageUploadPage() {
           )
         }
 
-        {/* Upload Progress */}
+        {/* Loading Progress */}
         {uploading && (
-          <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-            <div className="flex items-center space-x-2">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-              <span className="text-blue-700">Uploading image...</span>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+            <div className="flex flex-col items-center space-y-4 p-6 bg-white shadow-xl rounded-xl">
+              <div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-600 border-t-transparent"></div>
+              <p className="text-gray-700 text-lg font-medium">Uploading Image and Get Your Recommendation...</p>
+            </div>
+          </div>
+        )}
+        {loadCombine && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+            <div className="flex flex-col items-center space-y-4 p-6 bg-white shadow-xl rounded-xl">
+              <span className="loading loading-infinity loading-xl"></span>
+              <p className="text-gray-700 text-lg font-medium">Combine Room and Product</p>
             </div>
           </div>
         )}
@@ -185,14 +214,13 @@ export default function ImageUploadPage() {
             <div className="">
               {uploadedImages.map((image, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                  <div className="aspect-square relative">
                     <Image
                       src={image.url!}
                       alt={`Uploaded image ${index + 1}`}
-                      fill
-                      className="object-cover"
+                      width={800}         // or any desired max size
+                      height={400}
+                      className="rounded-lg object-contain w-full h-auto max-w-[600px] mx-auto shadow-md overflow-hidden"
                     />
-                  </div>
                   
                   <div className="p-4 space-y-2">
                     <div className="text-sm text-gray-600">
@@ -214,7 +242,7 @@ export default function ImageUploadPage() {
               ))}
             </div>
 
-            <section className="py-20 px-10 text-center">
+            <section className="py-10 px-10 text-center">
               <h2 className="text-3xl font-bold mb-6">Your Recommendation</h2>
               <p className="text-gray-700 max-w-xl mx-auto mb-12">Based on your room photo, we've selected furniture pieces that suit your space and style. Explore the recommendations, customize your picks, and make your room truly yours.</p>
               <button className="btn m-9" onClick={()=>{const modal = document.getElementById('my_modal_5') as HTMLDialogElement | null;
@@ -237,22 +265,62 @@ export default function ImageUploadPage() {
                 </div>
               </dialog>
             </section>
+
+            {
+              resCombineImg && (
+                <div className="mb-10">
+                  <div className="p-4 bg-white rounded-lg shadow-md overflow-hidden">
+                    <h2 className="text-2xl font-semibold mb-4">Combined Images</h2>
+                      <Image
+                        src={resCombineImg}
+                        alt={`Combine Image`}
+                        width={800}         // or any desired max size
+                        height={400}
+                        className="rounded-lg object-contain w-full h-auto max-w-[600px] mx-auto shadow-md overflow-hidden"
+                      />
+                    <div className="p-4 space-y-2">
+                      <div className="text-xs text-gray-500 break-all">
+                        {resCombineImg}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
               { 
                 (products &&
                   products?.map((el,idx) => {
-                    return <Card key={idx} product={el}/>
+                    return (
+                      <div key={idx} className="bg-white rounded-xl shadow p-4 text-left">
+                        <div className="text-right space-x-2">
+                          <button className="cursor-pointer" onClick={() => handleOnClickCombine(el.thumbnail)}>
+                              <IoMdInfinite  className="h-7 w-7" />
+                          </button>
+                          <ButtonAddToWishlist product={el} />
+                          <ButtonAddToCart product={el} page={"products"} />
+                        </div>
+                        <Link
+                          href={`/products/${el.name+'-'+el._id}`}
+                        >
+                          <img src={el.thumbnail} alt={el.name} className="w-full h-40 object-contain mb-4" />
+                        </Link>
+                        <h3 className="text-lg font-semibold mb-1">{el.name}</h3>
+                        <p className="text-gray-800 font-medium mb-2">{formatRupiah(el.price)}</p>
+                        <span className="text-sm font-semibold bg-gray-100 px-2 py-1 rounded-full">{el.description}</span>
+                        {/* <div className="text-right space-x-2">
+                          <button className="cursor-pointer" onClick={() => handleOnClickCombine(el.thumbnail)}>
+                              <IoMdInfinite  className="h-7 w-7" />
+                          </button>
+                          <ButtonAddToWishlist product={el} />
+                          <ButtonAddToCart product={el} page={"products"} />
+                        </div> */}
+                      </div>
+                    )
                   })
                 ) 
               }
-              {/* { 
-                products.length !== 0 && (
-                  products.map((el,idx) => {
-                    return <Card key={idx} product={el}/>
-                  })
-                ) 
-              } */}
             </div>
           </div>
         )}
