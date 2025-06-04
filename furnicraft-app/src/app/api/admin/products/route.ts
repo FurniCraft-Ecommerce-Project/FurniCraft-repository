@@ -2,6 +2,7 @@ import CartModel from "@/db/models/CartModel";
 import ProductModel from "@/db/models/ProductModel";
 import WishlistModel from "@/db/models/WishlistModel";
 import errorHandler from "@/helpers/errorHandler";
+import { textEmbedding } from "@/helpers/textEmbedding";
 import { type NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -9,7 +10,8 @@ export async function POST(request: NextRequest) {
     const { name, description, price, thumbnail, stock, category } =
       await request.json();
 
-    // console.log(name, description, price, thumbnail, stock, category);
+    //buat embedding untuk produk
+    const embedding = await textEmbedding(description);
 
     const data = await ProductModel.addProduct({
       name,
@@ -18,6 +20,7 @@ export async function POST(request: NextRequest) {
       thumbnail,
       stock,
       category,
+      embedding,
     });
     return Response.json({
       message: "Product added successfully",
@@ -25,6 +28,8 @@ export async function POST(request: NextRequest) {
       data,
     });
   } catch (error: unknown) {
+    // console.log(error, "<<<<<<<<<<<<<<<<<<<<<");
+
     return errorHandler(error);
   }
 }
@@ -34,6 +39,10 @@ export async function PUT(request: NextRequest) {
     const { productId, name, description, price, thumbnail, stock, category } =
       await request.json();
 
+    //buat embedding untuk produk
+    const embedding = await textEmbedding(description);
+    // console.log(embedding, "<<<<<<<<<<<<<<<<<<<<<");
+
     const data = await ProductModel.updateProduct({
       productId,
       name,
@@ -42,6 +51,7 @@ export async function PUT(request: NextRequest) {
       thumbnail,
       stock,
       category,
+      embedding,
     });
 
     return Response.json({
