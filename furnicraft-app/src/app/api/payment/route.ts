@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
             token: transactionToken
         });
 
-        return Response.json({ message: 'Order created', transactionToken })
+        return Response.json({ message: 'Order created', transactionToken, orderId: order_id }, { status: 201 });
     } catch (error) {
         return errorHandler(error)
     }

@@ -23,18 +23,23 @@ export default function ButtonRepayment({ token }: { token: string }) {
     }, []);
 
     const handlePayment = async () => {
-        window.snap.pay(String(token), {
-            onSuccess: async function (result: any) {
+        // @ts-ignore
+        window.snap.pay(token, {
+            onSuccess: async function () {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'PATCH',
-                    body: JSON.stringify({
-                        orderId: result.order_id
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderId })
                 });
-
-                const { message } = await response.json();
-                toast.success(message);
-                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order-list/thank-you/${result.order_id}`;
+                if (!response.ok) {
+                    const { message } = await response.json();
+                    toast.error(message);
+                    return;
+                }
+                await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
+                    method: 'DELETE'
+                });
+                const { message, _id } = await response.json();
             }
         });
     }

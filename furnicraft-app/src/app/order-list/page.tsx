@@ -7,8 +7,12 @@ import { useEffect, useState } from "react";
 import { OrderType } from "@/type";
 import { ShoppingBag } from "lucide-react";
 import MyModal from "@/components/ModalProducts";
+import { useSearchParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function OrdersPage() {
+  const searchParams = useSearchParams()
+  const transaction_status = searchParams.get('transaction_status')
   const [orders, setOrders] = useState<OrderType[]>([])
 
   const fetchOrders = async () => {
@@ -18,6 +22,9 @@ export default function OrdersPage() {
   }
 
   useEffect(() => {
+    if (transaction_status === 'pending') {
+      toast.error('Your payment is pending, please continue your transaction.')
+    }
     fetchOrders();
   }, []);
 
