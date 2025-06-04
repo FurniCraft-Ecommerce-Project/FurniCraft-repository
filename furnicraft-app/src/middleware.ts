@@ -17,11 +17,12 @@ export async function middleware(request: NextRequest) {
         if (type !== 'Bearer') throw { status: 401, message: 'Invalid Token' }
 
         // to get payload, verify with jose package. because verify using jwt there's error, not support in next
-        const payload = await verifyWithJose<{ userId: string, email: string }>(token)
+        const payload = await verifyWithJose<{ userId: string, email: string, role: string }>(token)
 
         // set payload to headers
         const requestHeaders = new Headers(request.headers)
         requestHeaders.set('x-user-id', payload.userId)
+        // requestHeaders.set('x-role-id', payload.role)
         const response = NextResponse.next({
             request: {
                 headers: requestHeaders,

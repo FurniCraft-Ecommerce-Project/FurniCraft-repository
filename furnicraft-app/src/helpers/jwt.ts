@@ -3,7 +3,7 @@ import { jwtVerify } from "jose";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret";
 
-export const generateToken = (payload: { userId: string; email: string }) => {
+export const generateToken = (payload: { userId: string; email: string; role:string }) => {
   return sign(payload, JWT_SECRET);
 };
 
