@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
 
         if (isValidImage) {
             responseFinal = []
-            resOpenAi = 'Maaf, saya tidak dapat memberikan analisis atau rekomendasi terkait gambar tersebut. Silahkan upload gambar kembali.'
+            resOpenAi = 'Sorry, I’m unable to analyze or provide recommendations based on this image. Please upload the image again.'
         }
 
         return NextResponse.json({
