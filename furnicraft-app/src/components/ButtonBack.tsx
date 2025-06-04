@@ -7,10 +7,10 @@ export default function ButtonBack() {
     return (
         <button
             onClick={handleClick}
-            className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            className="mt-6 px-4 py-2 bg-blue-500 text-white primary rounded hover:bg-blue-600 transition-colors"
             style={{ cursor: 'pointer', position: 'absolute', top: '1rem', right: '1rem' }}
         >
-            Back
+            Back to product
         </button>
     );
 }

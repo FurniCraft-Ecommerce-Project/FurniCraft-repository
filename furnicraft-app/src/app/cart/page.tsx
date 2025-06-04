@@ -8,9 +8,13 @@ import errorHandler from "@/helpers/errorHandler";
 import formatRupiah from "@/helpers/formatRupiah";
 import { CartType } from "@/type";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function ProductsDetail() {
+  const searchParams = useSearchParams()
+  const transaction_status = searchParams.get('transaction_status')
 
   const [data, setData] = useState<CartType[]>([])
   const [total, setTotal] = useState(0);
@@ -21,6 +25,9 @@ export default function ProductsDetail() {
     setData(resData)
   }
   useEffect(() => {
+    if (transaction_status === 'pending') {
+      toast.error('Your payment is pending, check your order to continue payment.')
+    }
     fetchDataWishlist()
   }, [])
 

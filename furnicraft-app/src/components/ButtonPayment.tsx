@@ -1,12 +1,13 @@
 "use client";
 
 import { CartType } from "@/type";
-import { redirect } from "next/navigation";
+import { on } from "events";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function ButtonPayment({ data }: { data: CartType[] }) {
-
+    const router = useRouter();
     useEffect(() => {
 
         const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js";
@@ -35,19 +36,32 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
                 items: data
             })
         });
-        const { transactionToken } = await response.json();
+        const { transactionToken, orderId } = await response.json();
 
+        // @ts-ignore
         window.snap.pay(transactionToken, {
-            onSuccess: async function (result: any) {
+            onSuccess: async function () {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ orderId: result.order_id })
+                    body: JSON.stringify({ orderId })
                 });
-
-                const { message, _id } = await response.json();
-                return window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/order-list/thank-you/${_id}`;
-            }
+                if (!response.ok) {
+                    const { message } = await response.json();
+                    toast.error(message);
+                    return;
+                }
+                await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
+                    method: 'DELETE'
+                });
+                const { _id } = await response.json();
+                router.push('/thank-you/' + _id);
+            },
+            onPending: async function () {
+                await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
+                    method: 'DELETE'
+                });
+            },
         });
     }
 

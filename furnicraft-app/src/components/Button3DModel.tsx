@@ -2,13 +2,18 @@
 
 import errorHandler from "@/helpers/errorHandler";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function Button3DModel({ imageUrl, id }: { imageUrl: string, id: string }) {
     const router = useRouter();
+    const [buttonDisabled, setButtonDisabled] = useState(false);
 
     const handleClick = async () => {
         try {
+            return alert('this feature is work, remove this line code to use the feature') // comment this line to enable the feature
+
+            setButtonDisabled(true);
             const product = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${id}`);
 
             if (!product.ok) {
@@ -86,10 +91,10 @@ export default function Button3DModel({ imageUrl, id }: { imageUrl: string, id: 
 
     return (
         <button
-            className="btn btn-primary btn-outline"
+            className="btn btn-primary btn-outline rounded-full" disabled={buttonDisabled}
             onClick={() =>
                 toast.promise(handleClick(), {
-                    loading: 'Please wait, we are preparing for 3D Model...',
+                    loading: 'Generating your 3D model...\nThis process usually takes 2 to 3 minutes. Thank you for your patience!',
                     success: <b>3D Model ready!</b>,
                     error: <b>Sorry, this product doesnt have 3D model yet!</b>,
                 })
