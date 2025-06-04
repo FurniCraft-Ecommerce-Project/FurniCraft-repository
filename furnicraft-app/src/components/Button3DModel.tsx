@@ -91,7 +91,8 @@ export default function Button3DModel({ imageUrl, id }: { imageUrl: string, id: 
 
     return (
         <button
-            className="btn btn-primary btn-outline rounded-full" disabled={buttonDisabled}
+          className="btn text-blue-600 hover:text-white bg-blue-100 hover:bg-blue-600 rounded-md px-3 py-1 text-sm font-medium"
+          style={{ cursor: "pointer" }} disabled={buttonDisabled}
             onClick={() =>
                 toast.promise(handleClick(), {
                     loading: 'Generating your 3D model...\nThis process usually takes 2 to 3 minutes. Thank you for your patience!',
