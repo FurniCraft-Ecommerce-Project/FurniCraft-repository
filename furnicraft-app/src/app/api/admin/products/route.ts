@@ -28,8 +28,6 @@ export async function POST(request: NextRequest) {
       data,
     });
   } catch (error: unknown) {
-    // console.log(error, "<<<<<<<<<<<<<<<<<<<<<");
-
     return errorHandler(error);
   }
 }
@@ -41,7 +39,6 @@ export async function PUT(request: NextRequest) {
 
     //buat embedding untuk produk
     const embedding = await textEmbedding(description);
-    // console.log(embedding, "<<<<<<<<<<<<<<<<<<<<<");
 
     const data = await ProductModel.updateProduct({
       productId,

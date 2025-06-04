@@ -83,8 +83,6 @@ class ProductModel {
       };
     }
 
-    // console.log("Embedding:", embedding);
-
     return await this.collection().insertOne({
       name,
       description,
@@ -116,8 +114,6 @@ class ProductModel {
     category: string;
     embedding: number[];
   }) {
-    // console.log(productId)
-    //buat validasi untuk memastikan semua field tidak kosong
     if (
       !productId ||
       !name ||
