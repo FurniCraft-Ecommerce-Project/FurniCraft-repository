@@ -2,15 +2,9 @@ import errorHandler from "@/helpers/errorHandler";
 import { NextRequest, NextResponse } from "next/server";
 import axios from 'axios';
 import FormData from 'form-data';
-import { v2 as cloudinary,UploadApiResponse } from 'cloudinary';
+import { UploadApiResponse } from 'cloudinary';
 import { PassThrough } from 'stream';
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
-  api_key: process.env.CLOUDINARY_API_KEY!,
-  api_secret: process.env.CLOUDINARY_API_SECRET!,
-});
-
+import cloudinary from "@/lib/cloudinary";
 
 // Utility: download image from URL and return buffer
 async function downloadImageBuffer(url: string): Promise<Buffer> {

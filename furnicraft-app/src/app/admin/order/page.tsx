@@ -94,23 +94,20 @@ export default function OrderManagementPage() {
     selectedStatus === "all"
       ? orders
       : orders.filter((order) =>
-          (order.deliveryStatus || order.status)
-            .toLowerCase()
-            .includes(selectedStatus.toLowerCase())
-        );
+        (order.deliveryStatus || order.status)
+          .toLowerCase()
+          .includes(selectedStatus.toLowerCase())
+      );
 
   // Get status badge style
   const getStatusBadgeClass = (status: string) => {
     switch (status.toLowerCase()) {
-      case "processing":
+      case "processed":
         return "bg-yellow-100 text-yellow-800";
       case "shipped":
         return "bg-blue-100 text-blue-800";
       case "delivered":
         return "bg-green-100 text-green-800";
-      case "cancelled":
-      case "canceled":
-        return "bg-red-100 text-red-800";
       case "pending":
         return "bg-orange-100 text-orange-800";
       default:
@@ -210,7 +207,7 @@ export default function OrderManagementPage() {
                 >
                   <option value="all">Semua Status</option>
                   <option value="pending">Pending</option>
-                  <option value="processing">Processing</option>
+                  <option value="processed">Processed</option>
                   <option value="shipped">Shipped</option>
                   <option value="delivered">Delivered</option>
                   <option value="cancelled">Cancelled</option>
@@ -238,9 +235,8 @@ export default function OrderManagementPage() {
                   <h2 className="text-xl font-semibold text-gray-800">
                     Manajemen Pesanan
                     {selectedStatus !== "all" &&
-                      ` - Status: ${
-                        selectedStatus.charAt(0).toUpperCase() +
-                        selectedStatus.slice(1)
+                      ` - Status: ${selectedStatus.charAt(0).toUpperCase() +
+                      selectedStatus.slice(1)
                       }`}
                   </h2>
                 </div>
@@ -271,7 +267,7 @@ export default function OrderManagementPage() {
                           Total
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Status Pengiriman
+                          Status Paket
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Action
@@ -357,10 +353,11 @@ export default function OrderManagementPage() {
                               }
                             >
                               <option value="pending">Pending</option>
-                              <option value="processing">Processing</option>
+                              <option value="placed">Order Placed</option>
+                              <option value="processed">Processed</option>
                               <option value="shipped">Shipped</option>
                               <option value="delivered">Delivered</option>
-                              <option value="cancelled">Cancelled</option>
+
                             </select>
                           </td>
                         </tr>

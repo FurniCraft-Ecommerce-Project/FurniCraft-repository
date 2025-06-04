@@ -147,7 +147,7 @@ export default function ProductsDetail() {
 
                                 if (el.quantity >= stock) {
                                   // Show an error or toast notification that stock is insufficient
-                                  alert(`Sorry, only ${stock} items available in stock`);
+                                  toast(`Sorry, only ${stock} items available in stock`)
                                   return;
                                 }
 
