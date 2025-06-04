@@ -1,6 +1,7 @@
 'use client'
 
 import { IoMdTrash } from "@react-icons/all-files/io/IoMdTrash";
+import toast from "react-hot-toast";
 
 export default function ButtonDeleteWishlist({ wishlistId }: { wishlistId: string }) {
 
@@ -20,7 +21,7 @@ export default function ButtonDeleteWishlist({ wishlistId }: { wishlistId: strin
             window.location.reload()
 
         } catch (error) {
-            alert((error as Error).message)
+            toast.error((error as Error).message)
         }
     }
     return (

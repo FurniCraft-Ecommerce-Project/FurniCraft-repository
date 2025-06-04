@@ -10,6 +10,7 @@ import Link from 'next/link';
 import ButtonAddToWishlist from '@/components/ButtonAddToWishlist';
 import ButtonAddToCart from '@/components/ButtonAddToCart';
 import { IoMdInfinite } from '@react-icons/all-files/io/IoMdInfinite';
+import toast from 'react-hot-toast';
 
 interface UploadResponse {
   success: boolean;
@@ -78,11 +79,10 @@ export default function ImageUploadPage() {
         setTextResOpenAi(textOpenAi)
         
       } else {
-        alert(result.error || 'Upload failed');
+        toast.error(result.error || 'Upload failed');
       }
     } catch (error) {
-      console.error('Upload error:', error);
-      alert('Upload failed. Please try again.');
+      toast.error('Upload failed. Please try again.');
     } finally {
       setUploading(false);
     }
