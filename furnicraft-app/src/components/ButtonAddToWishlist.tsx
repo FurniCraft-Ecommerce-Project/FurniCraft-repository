@@ -17,8 +17,9 @@ export default function ButtonAddToWishlist({ product }: { product: ProductType 
             if (!response.ok) {
                 throw (await response.json())
             }
-
-            return alert((await response.json()).message)
+            let msg = (await response.json()).message
+            toast.success(msg)
+            return
 
         } catch (error) {
             toast.error((error as Error).message)

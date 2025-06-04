@@ -3,9 +3,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import formatRupiah from "@/helpers/formatRupiah";
 import ButtonRepayment from "@/components/ButtonRepayment";
-import { useEffect, useState } from "react";
+import { useEffect, useState, JSX } from "react";
 import { OrderType } from "@/type";
-import { ShoppingBag } from "lucide-react";
+import { CheckCircle, ChevronRight, Clock, ClockFading, Minus, PackageCheck, ShoppingBag, Truck } from "lucide-react";
 import MyModal from "@/components/ModalProducts";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
@@ -60,8 +60,48 @@ export default function OrdersPage() {
                         {order.status === "paid" ? "Success" : order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                       </span>
                     </div>
-                    {order.status.toLowerCase() === "pending" && (
+
+                    {order.status.toLowerCase() === "pending" ? (
                       <ButtonRepayment token={order.token} orderId={order.orderId} />
+                    ) : (
+                      // Delivery Status Icons with connecting lines
+                      <div className="flex items-center space-x-2 ml-4">
+                        {["placed", "processed", "shipped", "delivered"].map((step, i, arr) => {
+                          const currentStep = order.deliveryStatus || 'delivered'; // fallback
+                          const orderStepIndex = arr.indexOf(currentStep);
+                          const thisStepIndex = i;
+
+                          const isActive = thisStepIndex <= orderStepIndex;
+                          const isCurrent = thisStepIndex === orderStepIndex;
+
+                          const getColor = () => {
+                            if (!isActive) return 'text-gray-300';
+                            if (isCurrent) return 'text-blue-500';
+                            return 'text-green-500';
+                          };
+
+                          const IconMap: Record<string, { icon: JSX.Element, text: string }> = {
+                            placed: { icon: <CheckCircle className={`w-5 h-5 ${getColor()}`} />, text: "Order Placed" },
+                            processed: { icon: <Clock className={`w-5 h-5 ${getColor()}`} />, text: "Processed" },
+                            shipped: { icon: <Truck className={`w-5 h-5 ${getColor()}`} />, text: "Shipped" },
+                            delivered: { icon: <PackageCheck className={`w-5 h-5 ${getColor()}`} />, text: "Delivered" },
+                          };
+
+                          return (
+                            <div key={step} className="flex items-center">
+
+                              <div className={'justify-center items-center flex flex-col'}>
+                                {IconMap[step]?.icon}
+                                <span className="text-xs mt-1 text-center">{IconMap[step]?.text}</span>
+
+                              </div>
+                              {i < arr.length - 1 && (
+                                <div className={`w-6 h-0.5 mx-1 ${orderStepIndex >= i + 1 ? 'bg-green-500' : 'bg-gray-300'}`} />
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
                     )}
                   </div>
 
