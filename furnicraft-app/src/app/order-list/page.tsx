@@ -5,7 +5,7 @@ import formatRupiah from "@/helpers/formatRupiah";
 import ButtonRepayment from "@/components/ButtonRepayment";
 import { useEffect, useState, JSX } from "react";
 import { OrderType } from "@/type";
-import { CheckCircle, ChevronRight, Clock, ClockFading, Minus, PackageCheck, ShoppingBag, Truck } from "lucide-react";
+import { CheckCircle, Clock, PackageCheck, ShoppingBag, Truck } from "lucide-react";
 import MyModal from "@/components/ModalProducts";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
@@ -57,7 +57,7 @@ export default function OrdersPage() {
                       <span className="font-medium">Belanja</span>
                       <span className="text-gray-500">{formattedDate}</span>
                       <span className={`px-2 py-1 text-xs rounded-md font-bold ${getStatusBgColor(order.status)}`}>
-                        {order.status === "paid" ? "Success" : order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                        {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                       </span>
                     </div>
 
@@ -67,7 +67,7 @@ export default function OrdersPage() {
                       // Delivery Status Icons with connecting lines
                       <div className="flex items-center space-x-2 ml-4">
                         {["placed", "processed", "shipped", "delivered"].map((step, i, arr) => {
-                          const currentStep = order.deliveryStatus || 'delivered'; // fallback
+                          const currentStep = order.deliveryStatus || 'placed'; // fallback
                           const orderStepIndex = arr.indexOf(currentStep);
                           const thisStepIndex = i;
 
@@ -164,7 +164,6 @@ function getStatusBgColor(status: string) {
       return "bg-blue-100 text-blue-800";
     case "delivered":
       return "bg-purple-100 text-purple-800";
-    case "cancelled":
     case "canceled":
       return "bg-red-100 text-red-800";
     case "pending":
