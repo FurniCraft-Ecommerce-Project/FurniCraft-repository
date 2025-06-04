@@ -16,15 +16,15 @@ export default function ModelViewer({ imageUrl }: { imageUrl: string }) {
                 type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
             />
             {isTrue &&
+                //@ts-ignore
                 <model-viewer
                     src={srcImage}
-                    alt="A 3D model of a chair"
                     auto-rotate
                     camera-controls
                     ar
                     style={{ width: '100%', height: '500px' }}
-                >
-                </model-viewer>}
+                    shadow-intensity="1"
+                />}
         </>
 
     );

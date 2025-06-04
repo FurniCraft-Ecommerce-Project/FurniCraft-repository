@@ -3,23 +3,10 @@ import OrderModel from "@/db/models/OrderModel";
 import UserModel from "@/db/models/UserModel";
 import generateOrderId from "@/helpers/createOrderId";
 import errorHandler from "@/helpers/errorHandler";
-import { ProductType } from "@/type";
-import midtransClient from "midtrans-client"
+import snap from "@/lib/midtrans";
+import { MidtransItems, ProductType } from "@/type";
 import { NextRequest, NextResponse } from "next/server";
 
-interface MidtransItem {
-    id: string;
-    price: number;
-    quantity: number;
-    name: string;
-}
-
-type MidtransItems = MidtransItem[];
-
-const snap = new midtransClient.Snap({
-    isProduction: false,
-    serverKey: process.env.MIDTRANS_SERVER_KEY
-});
 
 export async function POST(request: NextRequest) {
     try {
@@ -87,7 +74,7 @@ export async function POST(request: NextRequest) {
             token: transactionToken
         });
 
-        return Response.json({ message: 'Order created', transactionToken })
+        return Response.json({ message: 'Order created', transactionToken, orderId: order_id }, { status: 201 });
     } catch (error) {
         return errorHandler(error)
     }
@@ -96,18 +83,13 @@ export async function POST(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
     try {
         const body = await request.json();
-        const { orderId, status } = body;
+        const { orderId } = body;
 
         if (!orderId) {
             return NextResponse.json({ message: "Order ID is required" }, { status: 400 });
         }
 
         const order = await OrderModel.findByOrderId(orderId);
-
-        if (status) {
-            await CartModel.deleteCart(order.userId);
-            return
-        }
 
         if (!order) {
             return NextResponse.json({ message: "Order not found" }, { status: 404 });
@@ -142,9 +124,23 @@ export async function PATCH(request: NextRequest) {
             }
         );
 
-        await CartModel.deleteCart(order.userId);
-
         return NextResponse.json({ message: 'Success, payment received!', _id: order._id });
+    } catch (error) {
+        return errorHandler(error);
+    }
+}
+
+export async function DELETE(request: NextRequest) {
+    try {
+        const userId = request.headers.get('x-user-id');
+
+        if (!userId) {
+            return NextResponse.json({ message: "User ID is required" }, { status: 400 });
+        }
+
+        await CartModel.deleteCart(userId);
+
+        return NextResponse.json({ message: 'Cart deleted successfully' });
     } catch (error) {
         return errorHandler(error);
     }
