@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       <h1 className="text-3xl font-bold mb-4">3D Model Room</h1>
       <p className="mb-6">Product Name: {data?.name ?? 'Unknown'}</p>
       <div className="flex justify-center">
-        <ModelViewer imageUrl={data.image3dUrl}/>
+        <ModelViewer imageUrl={data.image3dUrl || ''}/>
       </div>
     </div>
   );
