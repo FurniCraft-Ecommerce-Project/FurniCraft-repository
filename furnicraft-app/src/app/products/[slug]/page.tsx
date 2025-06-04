@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import formatRupiah from "@/helpers/formatRupiah";
 import { ProductType } from "@/type";
+import Link from "next/link";
 export default async function ProductsDetail({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
     const [nameProductParams, idProductParams] = slug.split('-')
@@ -40,8 +41,11 @@ export default async function ProductsDetail({ params }: { params: Promise<{ slu
                                 </p>
                             </div>
 
-                            <div className="flex w-1/2 gap-4 mt-6">
+                            <div className="flex gap-4 mt-6">
                                 <ButtonAddToCart product={data} page={"detail"} />
+                                {data.image3dUrl && (
+                                    <Link href={`/products/3d-view/${data._id}`} className="btn btn-primary btn-outline rounded-full">See 3D View</Link>
+                                )}
                             </div>
                         </div>
                     </div>
