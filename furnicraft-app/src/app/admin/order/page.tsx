@@ -336,19 +336,19 @@ export default function OrderManagementPage() {
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span
                               className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(
-                                order.deliveryStatus || order.status
+                                order.deliveryStatus || "pending"
                               )}`}
                             >
-                              {(order.deliveryStatus || order.status)
+                              {(order.deliveryStatus || "pending")
                                 .charAt(0)
                                 .toUpperCase() +
-                                (order.deliveryStatus || order.status).slice(1)}
+                                (order.deliveryStatus || "pending").slice(1)}
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <select
                               className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-[#D4A86A]"
-                              value={order.deliveryStatus || order.status}
+                              value={order.deliveryStatus || "pending"}
                               onChange={(e) =>
                                 handleUpdateStatus(
                                   order.orderId,
@@ -356,6 +356,7 @@ export default function OrderManagementPage() {
                                 )
                               }
                             >
+                              <option value="pending">Pending</option>
                               <option value="processing">Processing</option>
                               <option value="shipped">Shipped</option>
                               <option value="delivered">Delivered</option>
