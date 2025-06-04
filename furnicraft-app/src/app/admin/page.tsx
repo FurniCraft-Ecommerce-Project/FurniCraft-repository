@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDebouncedCallback } from "use-debounce";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Navbar from "@/components/Navbar";
+import Button3DModel from "@/components/Button3DModel";
 
 export default function AdminPage() {
   // State untuk produk dan loading
@@ -454,6 +455,7 @@ export default function AdminPage() {
                     </h2>
                     <button
                       onClick={handleAddClick}
+                      style={{ cursor: "pointer" }}
                       className="bg-[#D4A86A] hover:bg-[#C19556] text-white px-3 py-2 rounded-md text-sm font-medium transition-all flex items-center"
                     >
                       <svg
@@ -559,15 +561,28 @@ export default function AdminPage() {
                               <button
                                 onClick={() => handleEditClick(product)}
                                 className="text-indigo-600 hover:text-indigo-900 mr-4"
+                                style={{ cursor: "pointer" }}
                               >
                                 Edit
                               </button>
                               <button
                                 onClick={() => handleDelete(product._id)}
-                                className="text-red-600 hover:text-red-900"
+                                className="text-red-600 hover:text-red-900 mr-4"
+                                style={{ cursor: "pointer" }}
                               >
                                 Hapus
                               </button>
+                              {!product.image3dUrl && (
+                                <Button3DModel imageUrl={product.thumbnail} id={product._id}/>
+                                // <button
+                                //   onClick={() => handleDelete(product._id)}
+                                //   className="btn text-blue-600 hover:text-white bg-blue-100 hover:bg-blue-600 rounded-md px-3 py-1 text-sm font-medium"
+                                //   style={{ cursor: "pointer" }}
+                                // >
+                                //   Generate 3D Model
+                                // </button>
+                              )}
+
                             </td>
                           </tr>
                         ))
