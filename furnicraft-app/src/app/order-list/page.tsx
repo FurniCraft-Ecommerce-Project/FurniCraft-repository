@@ -61,7 +61,7 @@ export default function OrdersPage() {
                       </span>
                     </div>
                     {order.status.toLowerCase() === "pending" && (
-                      <ButtonRepayment token={order.token} />
+                      <ButtonRepayment token={order.token} orderId={order.orderId} />
                     )}
                   </div>
 

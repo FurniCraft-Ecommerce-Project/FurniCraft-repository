@@ -1,9 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
-export default function ButtonRepayment({ token }: { token: string }) {
+export default function ButtonRepayment({ token, orderId }: { token: string, orderId: string }) {
+    const router = useRouter();
 
     useEffect(() => {
 
@@ -29,7 +31,7 @@ export default function ButtonRepayment({ token }: { token: string }) {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ orderId })
+                    body: JSON.stringify({ orderId})
                 });
                 if (!response.ok) {
                     const { message } = await response.json();
@@ -39,7 +41,8 @@ export default function ButtonRepayment({ token }: { token: string }) {
                 await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'DELETE'
                 });
-                const { message, _id } = await response.json();
+                const { _id } = await response.json();
+                router.push('/thank-you/' + _id);
             }
         });
     }
