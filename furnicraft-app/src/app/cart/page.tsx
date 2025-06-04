@@ -8,7 +8,7 @@ import errorHandler from "@/helpers/errorHandler";
 import formatRupiah from "@/helpers/formatRupiah";
 import { CartType } from "@/type";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -27,6 +27,14 @@ export default function ProductsDetail() {
   useEffect(() => {
     if (transaction_status === 'pending') {
       toast.error('Your payment is pending, check your order to continue payment.')
+    } else if (transaction_status === 'capture') {
+      const del = async () => {
+          await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
+          method: 'DELETE'
+        });
+      }
+      del()
+      redirect('/thank-you')
     }
     fetchDataWishlist()
   }, [])
