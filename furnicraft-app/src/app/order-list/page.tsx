@@ -67,7 +67,7 @@ export default function OrdersPage() {
                       // Delivery Status Icons with connecting lines
                       <div className="flex items-center space-x-2 ml-4">
                         {["placed", "processed", "shipped", "delivered"].map((step, i, arr) => {
-                          const currentStep = order.deliveryStatus || 'placed'; // fallback
+                          const currentStep = order.deliveryStatus || 'pending'; // fallback
                           const orderStepIndex = arr.indexOf(currentStep);
                           const thisStepIndex = i;
 

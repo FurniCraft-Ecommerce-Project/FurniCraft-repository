@@ -1,13 +1,11 @@
 "use client";
 
 import { CartType } from "@/type";
-import { on } from "events";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function ButtonPayment({ data }: { data: CartType[] }) {
-    const router = useRouter();
     useEffect(() => {
 
         const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js";
@@ -49,13 +47,12 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
                 if (!response.ok) {
                     const { message } = await response.json();
                     toast.error(message);
-                    return;
                 }
                 await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {
                     method: 'DELETE'
                 });
                 const { _id } = await response.json();
-                router.push('/thank-you/' + _id);
+                window.location.href = '/thank-you/' + _id;
             },
             onPending: async function () {
                 await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {

@@ -65,7 +65,7 @@ export default class OrderModel {
       .aggregate([
         {
           $match: {
-            userId: new ObjectId("6839b64e8ad90b7498b257b1"),
+            userId: new ObjectId(userId),
           },
         },
         {
@@ -106,15 +106,12 @@ export default class OrderModel {
 
     // Panggil order yang sudah paid dari getAllPaidOrders
     const paidOrders = await this.getAllPaidOrders();
-    // console.log(paidOrders, "<<<<<<<<<<<<<<<<<<<<<");
 
     // Cari paidOrder dengan findOne
     const order = paidOrders.find((order) => order.orderId === orderId);
     if (!order) {
       throw { status: 404, message: "Order not found or not paid" };
     }
-
-    // console.log(order);
 
     // Update deliveryStatus order
     const result = await this.collection().updateOne(
