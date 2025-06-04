@@ -49,11 +49,8 @@ export const textEmbeddingFunctOpenAi = async (base64Image : string, question : 
 
     const result = await response.json();
     const resultValueText = result.choices[0].message.content
-    // console.log("Vision Analysis:", resultValueText);
 
     const resEmbed = await textEmbedding(resultValueText)
-
-    // return resEmbed
 
     return {
         textEmbed : resEmbed,
