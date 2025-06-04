@@ -36,6 +36,7 @@
     "react-markdown": "^10.1.0",
     "react-toastify": "^11.0.5",
     "replicate": "^1.0.1",
+    "stream": "^0.0.3",
     "three": "^0.172.0",
     "use-debounce": "^10.0.4",
     "zod": "^3.25.30"
