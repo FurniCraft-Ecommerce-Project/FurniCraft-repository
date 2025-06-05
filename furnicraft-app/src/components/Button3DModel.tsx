@@ -126,7 +126,7 @@ export default function Button3DModel({
         })
       }
     >
-      See 3D Model
+      Generate 3D Model
     </button>
   );
 }

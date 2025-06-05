@@ -94,10 +94,10 @@ export default function OrderManagementPage() {
     selectedStatus === "all"
       ? orders
       : orders.filter((order) =>
-        (order.deliveryStatus || order.status)
-          .toLowerCase()
-          .includes(selectedStatus.toLowerCase())
-      );
+          (order.deliveryStatus || order.status)
+            .toLowerCase()
+            .includes(selectedStatus.toLowerCase())
+        );
 
   // Get status badge style
   const getStatusBadgeClass = (status: string) => {
@@ -235,8 +235,9 @@ export default function OrderManagementPage() {
                   <h2 className="text-xl font-semibold text-gray-800">
                     Manajemen Pesanan
                     {selectedStatus !== "all" &&
-                      ` - Status: ${selectedStatus.charAt(0).toUpperCase() +
-                      selectedStatus.slice(1)
+                      ` - Status: ${
+                        selectedStatus.charAt(0).toUpperCase() +
+                        selectedStatus.slice(1)
                       }`}
                   </h2>
                 </div>
@@ -353,11 +354,10 @@ export default function OrderManagementPage() {
                               }
                             >
                               <option value="pending">Pending</option>
-                              <option value="placed">Order Placed</option>
+                              <option value="placed">Confirm Order</option>
                               <option value="processed">Processed</option>
                               <option value="shipped">Shipped</option>
                               <option value="delivered">Delivered</option>
-
                             </select>
                           </td>
                         </tr>
