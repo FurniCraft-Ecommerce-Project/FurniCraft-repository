@@ -11,7 +11,7 @@ export default function Button3DModel({ imageUrl, id }: { imageUrl: string, id: 
 
     const handleClick = async () => {
         try {
-            return alert('this feature is work, remove this line code to use the feature') // comment this line to enable the feature
+            // return alert('this feature is work, remove this line code to use the feature') // comment this line to enable the feature
 
             setButtonDisabled(true);
             const product = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${id}`);
