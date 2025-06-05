@@ -96,10 +96,12 @@ class UserModel {
     const access_token = generateToken({
       userId: existUser._id.toString(),
       email: existUser.email,
+      role : existUser.role
     });
 
     const cookieStore = await cookies();
     cookieStore.set("Authorization", `Bearer ${access_token}`);
+    cookieStore.set("Role", existUser.role);
 
     return access_token;
   }

@@ -52,7 +52,8 @@ export default function ButtonPayment({ data }: { data: CartType[] }) {
                     method: 'DELETE'
                 });
                 const { _id } = await response.json();
-                window.location.href = '/thank-you/' + _id;
+                // window.location.href = '/thank-you/' + _id;
+                window.location.href = '/thank-you'
             },
             onPending: async function () {
                 await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment`, {

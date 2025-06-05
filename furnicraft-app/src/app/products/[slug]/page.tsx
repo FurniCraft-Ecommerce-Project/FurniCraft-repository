@@ -1,10 +1,9 @@
-import Button3DModel from "@/components/Button3DModel";
 import ButtonAddToCart from "@/components/ButtonAddToCart";
-import ButtonBuy from "@/components/ButtonBuy";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import formatRupiah from "@/helpers/formatRupiah";
 import { ProductType } from "@/type";
+import Link from "next/link";
 export default async function ProductsDetail({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
     const [nameProductParams, idProductParams] = slug.split('-')
@@ -44,8 +43,9 @@ export default async function ProductsDetail({ params }: { params: Promise<{ slu
 
                             <div className="flex gap-4 mt-6">
                                 <ButtonAddToCart product={data} page={"detail"} />
-                                <ButtonBuy />
-                                <Button3DModel imageUrl={data.thumbnail} id={data._id} />
+                                {data.image3dUrl && (
+                                    <Link href={`/products/3d-view/${data._id}`} className="btn btn-primary btn-outline rounded-full">See 3D View</Link>
+                                )}
                             </div>
                         </div>
                     </div>

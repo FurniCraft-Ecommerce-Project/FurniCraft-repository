@@ -30,7 +30,7 @@ export default function ButtonAddToCart({ product, page }: { product: ProductTyp
 
     return (
         page === 'detail' ?
-            <button className="flex-1 border border-gray py-2 rounded-full hover:bg-gray-500 hover:text-white" onClick={handleOnClick} style={{cursor: "pointer"}}>
+            <button className="flex-1 border border-gray py-2 rounded-full hover:bg-black hover:text-white" onClick={handleOnClick} style={{cursor: "pointer"}}>
                 Add to Cart
             </button>
             :

@@ -114,7 +114,8 @@ export default function Button3DModel({
 
   return (
     <button
-      className="btn btn-primary btn-outline rounded-full"
+      className="btn text-blue-600 hover:text-white bg-blue-100 hover:bg-blue-600 rounded-md px-3 py-1 text-sm font-medium"
+      style={{ cursor: "pointer" }}
       disabled={buttonDisabled}
       onClick={() =>
         toast.promise(handleClick(), {
