@@ -124,16 +124,18 @@ export default function AdminPage() {
     if (!file) return;
 
     // Validate file type
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
     if (!allowedTypes.includes(file.type)) {
-      toast.error('Tipe file tidak valid. Hanya JPEG, PNG, WebP, dan GIF yang diperbolehkan.');
+      toast.error(
+        "Tipe file tidak valid. Hanya JPEG, PNG, WebP, dan GIF yang diperbolehkan."
+      );
       return;
     }
 
     // Validate file size (max 5MB)
     const maxSize = 5 * 1024 * 1024; // 5MB
     if (file.size > maxSize) {
-      toast.error('Ukuran file terlalu besar. Maksimum 5MB.');
+      toast.error("Ukuran file terlalu besar. Maksimum 5MB.");
       return;
     }
 
@@ -141,29 +143,29 @@ export default function AdminPage() {
 
     try {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append("file", file);
 
-      const response = await fetch('/api/upload/image', {
-        method: 'POST',
+      const response = await fetch("/api/upload/image", {
+        method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error('Gagal mengunggah gambar');
+        throw new Error("Gagal mengunggah gambar");
       }
 
       const data = await response.json();
 
       // Update form data with the uploaded image URL
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        thumbnail: data.url
+        thumbnail: data.url,
       }));
 
-      toast.success('Gambar berhasil diunggah');
+      toast.success("Gambar berhasil diunggah");
     } catch (error) {
-      console.error('Error uploading image:', error);
-      toast.error('Gagal mengunggah gambar');
+      console.error("Error uploading image:", error);
+      toast.error("Gagal mengunggah gambar");
     } finally {
       setIsUploading(false);
     }
@@ -171,14 +173,14 @@ export default function AdminPage() {
 
   // Handle thumbnail removal
   const handleRemoveThumbnail = () => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      thumbnail: ''
+      thumbnail: "",
     }));
 
     // Reset file input
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
@@ -230,13 +232,13 @@ export default function AdminPage() {
       const submitData =
         modalMode === "add"
           ? {
-            name: formData.name,
-            description: formData.description,
-            price: formData.price,
-            thumbnail: formData.thumbnail,
-            stock: formData.stock,
-            category: formData.category,
-          }
+              name: formData.name,
+              description: formData.description,
+              price: formData.price,
+              thumbnail: formData.thumbnail,
+              stock: formData.stock,
+              category: formData.category,
+            }
           : formData;
 
       const response = await fetch(url, {
@@ -573,7 +575,11 @@ export default function AdminPage() {
                                 Hapus
                               </button>
                               {!product.image3dUrl && (
-                                <Button3DModel imageUrl={product.thumbnail} id={product._id}/>
+                                <Button3DModel
+                                  imageUrl={product.thumbnail}
+                                  id={product._id}
+                                  text="Generate"
+                                />
                                 // <button
                                 //   onClick={() => handleDelete(product._id)}
                                 //   className="btn text-blue-600 hover:text-white bg-blue-100 hover:bg-blue-600 rounded-md px-3 py-1 text-sm font-medium"
@@ -582,7 +588,20 @@ export default function AdminPage() {
                                 //   Generate 3D Model
                                 // </button>
                               )}
-
+                              {product.image3dUrl && (
+                                <Button3DModel
+                                  imageUrl={product.thumbnail}
+                                  id={product._id}
+                                  text="See"
+                                />
+                                // <button
+                                //   onClick={() => handleDelete(product._id)}
+                                //   className="btn text-blue-600 hover:text-white bg-blue-100 hover:bg-blue-600 rounded-md px-3 py-1 text-sm font-medium"
+                                //   style={{ cursor: "pointer" }}
+                                // >
+                                //   Generate 3D Model
+                                // </button>
+                              )}
                             </td>
                           </tr>
                         ))
@@ -743,7 +762,9 @@ export default function AdminPage() {
                       {isUploading && (
                         <div className="flex items-center space-x-2 mt-2">
                           <div className="animate-spin rounded-full h-4 w-4 border-2 border-[#D4A86A] border-t-transparent"></div>
-                          <span className="text-sm text-gray-500">Mengunggah gambar...</span>
+                          <span className="text-sm text-gray-500">
+                            Mengunggah gambar...
+                          </span>
                         </div>
                       )}
                     </div>

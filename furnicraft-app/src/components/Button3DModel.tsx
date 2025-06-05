@@ -8,9 +8,11 @@ import toast from "react-hot-toast";
 export default function Button3DModel({
   imageUrl,
   id,
+  text,
 }: {
   imageUrl: string;
   id: string;
+  text: string;
 }) {
   const router = useRouter();
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -126,7 +128,7 @@ export default function Button3DModel({
         })
       }
     >
-      Generate 3D Model
+      {text} 3D Model
     </button>
   );
 }
