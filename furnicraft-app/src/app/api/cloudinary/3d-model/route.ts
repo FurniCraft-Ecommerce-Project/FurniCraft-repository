@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
                 {
                     resource_type: 'raw',
                     public_id: productId,
+                    folder: 'furnicraft/3dassets',
                     overwrite: true,
                 },
                 (error, result) => {
